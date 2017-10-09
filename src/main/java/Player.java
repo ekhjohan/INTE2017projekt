@@ -1,10 +1,17 @@
 
 public class Player{
-    int x;
 
-    public int test(int i){
+    private int life, speed;
 
-        return i +3;
+    public Player(){
+        this.life = 1;
+        this.speed = 10;
     }
 
+    public int getLife() {
+        return this.life;
+    }
+    public int getSpeed() {
+        return this.speed;
+    }
 }
