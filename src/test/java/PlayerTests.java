@@ -12,6 +12,7 @@ public class PlayerTests {
     public void testX(){
         Player x = new Player();
         assertEquals(0,x.x);
+
     }
 
 }
