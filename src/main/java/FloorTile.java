@@ -1,12 +1,35 @@
+import Items.Item;
+
 public class FloorTile extends Tile{
 
-
-    //Will be replaced with a item later!
-    String objectToBePlaced;
+    private Item item = null;
 
 
-    public FloorTile(String objectToBePlaced){
+    public FloorTile(){
         super(true);
-        this.objectToBePlaced = objectToBePlaced;
+    }
+
+    public void addItem(Item newItem){
+        if(item == null){
+            this.item = newItem;
+        }
+
+    }
+
+    public void removeItem(){
+        this.item = null;
+
+    }
+
+    public boolean hasItem(){
+        if(item != null){
+            return true;
+        }
+
+        return false;
+    }
+
+    public Item getItem(){
+        return item;
     }
 }
