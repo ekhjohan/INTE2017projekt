@@ -1,5 +1,5 @@
 package Items;
 
-public class GlassShiver {
+public class GlassShiver extends Item{
 
 }

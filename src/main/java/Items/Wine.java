@@ -1,4 +1,4 @@
 package Items;
 
-public class Wine {
+public class Wine extends Item {
 }

@@ -1,4 +1,4 @@
 package Items;
 
-public class Water {
+public class Water extends Item {
 }
