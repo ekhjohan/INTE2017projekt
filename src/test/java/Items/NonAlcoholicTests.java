@@ -4,12 +4,10 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertNotNull;
 
-public class BeerTests {
+public class NonAlcoholicTests {
     @Test
-    public void testCreateBeer(){
-        Item i = new Beer();
+    public void createNonAlcoholicDrinkTest() {
+        Item i = new NonAlcoholicDrink();
         assertNotNull(i);
     }
-
 }
-

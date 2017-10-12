@@ -1,14 +1,14 @@
 package Items;
 
 public class Beer extends Item {
-    private int alcoholContent = 1;
-    private int balance = -1;
+    private final int alcoholContent = 1;
+    private final int balanceBuff = -1;
 
     public int getAlcoholContent() {
         return alcoholContent;
     }
 
-    public int getBalance() {
-        return balance;
+    public int getBalanceBuff() {
+        return balanceBuff;
     }
 }
