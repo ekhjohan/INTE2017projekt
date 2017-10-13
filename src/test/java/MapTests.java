@@ -45,4 +45,6 @@ public class MapTests {
         assertTrue(tile.equals(new FloorTile()));
     }
 
+
+
 }

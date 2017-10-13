@@ -24,6 +24,13 @@ public class CharacterTests {
         assertEquals(coord, newCharacter.getCoordinate());
     }
 
+    @Test
+    public void testUpdateCoordinate(){
+        Coordinate newCoord = new Coordinate(0, 1);
+        newCharacter.setCoordinate(0,0);
+        newCharacter.updateCoordinate(0,1);
 
+        assertEquals(newCoord, newCharacter.getCoordinate());
+    }
 
 }

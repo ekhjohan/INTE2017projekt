@@ -17,4 +17,11 @@ abstract public class Character {
     public void setCoordinate(int x, int y){
         this.coordinate = new Coordinate(x,y);
     }
+
 }
+
+
+//int xDiff = Math.abs(startCoord.getX() - newCoord.getX());
+//int yDiff = Math.abs(startCoord.getY() - newCoord.getY());
+//
+//    assertTrue(xDiff);

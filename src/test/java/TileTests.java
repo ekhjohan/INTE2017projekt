@@ -9,6 +9,12 @@ import static org.junit.Assert.*;
 public class TileTests {
 
     @Test
+    public void testCreateTile(){
+        Tile tile = new FloorTile();
+        assertNotNull(tile);
+    }
+
+    @Test
     public void testCreateNonWalkAbleTileWithFalse(){
         NonWalkAbleTile newTile = new NonWalkAbleTile();
         assertNotNull(newTile);
@@ -64,21 +70,22 @@ public class TileTests {
         Item waterItem = new Water();
 
         assertEquals(beerItem, newTile.getItem());
-
-
     }
 
+    @Test
+    public void testGetItem(){
+        Item item = new Water();
+        FloorTile floortile = new FloorTile();
+        floortile.addItem(item);
+
+        assertEquals(item, floortile.getItem());
+    }
     @Test
     public void testHasItem(){
         FloorTile newTile = new FloorTile();
         Item waterItem = new Water();
         newTile.addItem(waterItem);
         assertTrue(newTile.hasItem());
-
-    }
-
-    @Test
-    public void testObjectOnFloorTile(){
 
     }
 
@@ -95,9 +102,44 @@ public class TileTests {
         assertTrue(newTile.walkAble);
     }
 
+    @Test
+    public void testTileEquals(){
+        Tile tile1 = new FloorTile();
+        Tile tile2 = new FloorTile();
 
+        assertTrue(tile1.equals(tile2));
+    }
+    @Test
+    public void testFloorTileEquals(){
+        FloorTile tile1 = new FloorTile();
+        FloorTile tile2 = new FloorTile();
 
+        assertTrue(tile1.equals(tile2));
+    }
 
+    @Test
+    public void testTileNotEqual(){
+        Tile tile1 = new NonWalkAbleTile();
+        Tile tile2 = new FloorTile();
+
+        assertFalse(tile1.equals(tile2));
+    }
+
+    @Test
+    public void testTileHashCode(){
+        Tile tile1 = new FloorTile();
+        Tile tile2 = new FloorTile();
+
+        assertEquals(tile1.hashCode(), tile2.hashCode());
+    }
+
+    @Test
+    public void testFloorTileHashCode(){
+        FloorTile tile1 = new FloorTile();
+        FloorTile tile2 = new FloorTile();
+
+        assertEquals(tile1.hashCode(), tile2.hashCode());
+    }
 
 
 

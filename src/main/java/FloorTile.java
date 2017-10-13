@@ -40,8 +40,10 @@ public class FloorTile extends Tile{
 
     }
 
+    //Can't compare tiles with item==null
     @Override
     public int hashCode() {
+        if (this.item==null) return -1;
         return item.hashCode();
     }
 }
