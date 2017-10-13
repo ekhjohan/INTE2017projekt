@@ -18,6 +18,9 @@ abstract public class Character {
         this.coordinate = new Coordinate(x,y);
     }
 
+    public void updateCoordinate(int x , int y){
+        this.coordinate = new Coordinate(x, y);
+    }
 }
 
 
