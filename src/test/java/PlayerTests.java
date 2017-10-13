@@ -31,10 +31,22 @@ public class PlayerTests {
 
     @Test
     public void getPlayerCoordinate() {
-        // Vi får (temporärt) implementera en setCoordinate eller liknande
-        // så att vi kan testa detta. Inte hunnit än.
         Player player = new Player("Test");
-        int speed = player.getSpeed();
-        assertEquals(10, speed);
+        player.setCoordinate(0,0);
+        Coordinate coord = new Coordinate(0,0);
+
+        assertEquals(coord, player.getCoordinate());
+    }
+
+    @Test
+    public void testEmptyItemList(){
+
+    }
+
+    @Test
+    public void testItemListIsNull(){
+        Player player = new Player("Test");
+
+        assertNotNull(player.getItemList());
     }
 }
