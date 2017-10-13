@@ -35,10 +35,17 @@ public class CharacterTests {
 
     @Test (expected = IndexOutOfBoundsException.class)
     public void testTooBigYCoordinateUpdate(){
-        Coordinate newCoord = new Coordinate(0, 2);
         newCharacter.setCoordinate(0,0);
         newCharacter.updateCoordinate(0,2);
 
     }
+  @Test (expected = IndexOutOfBoundsException.class)
+    public void testTooBigXCoordinateUpdate(){
+        newCharacter.setCoordinate(0,0);
+        newCharacter.updateCoordinate(2,0);
+
+    }
+
+
 
 }

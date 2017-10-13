@@ -18,13 +18,16 @@ abstract public class Character {
         this.coordinate = new Coordinate(x,y);
     }
 
-    public void updateCoordinate(int x , int y){
+    public void updateCoordinate(int x , int y) throws IndexOutOfBoundsException{
+        int xDiff = Math.abs(this.coordinate.getX() - x);
+        int yDiff = Math.abs(this.coordinate.getY() - y);
+
+        if (xDiff > 1 || yDiff > 1)throw new IndexOutOfBoundsException("Too big update");
+
+
         this.coordinate = new Coordinate(x, y);
     }
 }
 
 
-//int xDiff = Math.abs(startCoord.getX() - newCoord.getX());
-//int yDiff = Math.abs(startCoord.getY() - newCoord.getY());
-//
-//    assertTrue(xDiff);
+
