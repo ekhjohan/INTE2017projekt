@@ -22,14 +22,26 @@ public class FloorTile extends Tile{
     }
 
     public boolean hasItem(){
-        if(item != null){
-            return true;
-        }
+        return (item != null);
 
-        return false;
     }
 
     public Item getItem(){
         return item;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        FloorTile floorTile = (FloorTile) o;
+        return this.item == null && floorTile.getItem() == null || item.equals(floorTile.getItem());
+
+    }
+
+    @Override
+    public int hashCode() {
+        return item.hashCode();
     }
 }

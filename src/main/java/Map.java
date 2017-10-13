@@ -14,7 +14,7 @@ public class Map {
         map = new HashMap<Coordinate,Tile>();
         for(int x = 0; x < height; x++) {
             for(int y = 0; y < width; y++) {
-               // map.put(new Coordinate(x,y),);
+                map.put(new Coordinate(x,y),new NonWalkAbleTile());
             }
         }
     }
@@ -28,8 +28,8 @@ public class Map {
         return width;
     }
     public Tile getTileOnCoordinate(int x, int y){
-        Tile tile = map.get(new Coordinate(x,y));
-        return tile;
+        return map.get(new Coordinate(x,y));
+
     }
     public HashMap<Coordinate, Tile> getMap() {
         return map;

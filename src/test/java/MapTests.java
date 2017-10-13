@@ -25,23 +25,24 @@ public class MapTests {
     public void initMap() {
         int height = 10;
         int width = 5;
-        HashMap expectedMap = new HashMap<Coordinate,Tile>();
+        HashMap<Coordinate, Tile> expectedMap = new HashMap<Coordinate,Tile>();
         for(int x = 0; x < height; x++) {
             for(int y = 0; y < width; y++) {
-                expectedMap.put(new Coordinate(x,y),Tile.EMPTY);
+                expectedMap.put(new Coordinate(x,y),new NonWalkAbleTile());
             }
         }
         Map map = new Map(height, width);
-        HashMap actualMap = map.getMap();
-        assertTrue(expectedMap.equals(actualMap));
+        HashMap<Coordinate, Tile> actualMap = map.getMap();
+        System.out.println(actualMap.size());
+        assertEquals(expectedMap, actualMap);
     }
 
     @Test
     public void addTileToMap() {
         Map map = new Map(10,5);
-        map.addTile(0, 1, Tile.GRASS);
+        map.addTile(0, 1, new FloorTile());
         Tile tile = map.getTileOnCoordinate(0,1);
-        assertEquals(Tile.GRASS, tile);
+        assertTrue(tile.equals(new FloorTile()));
     }
 
 }

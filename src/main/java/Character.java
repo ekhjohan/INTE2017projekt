@@ -14,4 +14,7 @@ abstract public class Character {
         return coordinate.clone();
     }
 
+    public void setCoordinate(int x, int y){
+        this.coordinate = new Coordinate(x,y);
+    }
 }

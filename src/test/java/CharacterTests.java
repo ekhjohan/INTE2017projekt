@@ -17,10 +17,13 @@ public class CharacterTests {
        assertEquals(10, newCharacter.getSpeed());
     }
 
+    @Test
     public void testSetCoordinate(){
         newCharacter.setCoordinate(0,0);
         Coordinate coord = new Coordinate(0,0);
         assertEquals(coord, newCharacter.getCoordinate());
     }
+
+
 
 }
