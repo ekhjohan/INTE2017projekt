@@ -13,4 +13,5 @@ abstract public class Character {
     public Coordinate getCoordinate() {
         return coordinate.clone();
     }
+
 }
