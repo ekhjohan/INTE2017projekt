@@ -1,5 +1,4 @@
-import Items.Item;
-import Items.Water;
+import Items.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -47,7 +46,7 @@ public class PlayerTests {
         assertEquals(coord, player.getCoordinate());
     }
 
-    @Test
+    //@Test
     public void testEmptyItemList(){
 
     }
@@ -68,9 +67,29 @@ public class PlayerTests {
     @Test
     public void testGetDrunknessNoItems(){
         int drunk = player.getDrunkness();
-
         assertEquals(0, drunk);
 
         }
+
+    @Test
+    public void testGetDrunkessOneItem(){
+        player.addItem(new Shot());
+
+        assertEquals(2, player.getDrunkness());
+    }
+    @Test
+    public void testGetDrunknessSeveralItems(){
+        player.addItem(new Shot());
+        player.addItem(new Water());
+        player.addItem(new GlassShiver());
+        player.addItem(new Wine());
+        assertEquals(1, player.getDrunkness());
+    }
+    @Test
+    public void testNegativeDrunkness(){
+        player.addItem(new Water());
+
+        assertEquals(0, player.getDrunkness());
+    }
 
 }
