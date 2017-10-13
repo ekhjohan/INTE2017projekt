@@ -29,6 +29,21 @@ public class CoordinateTests {
         assertTrue(coordinate1.equals(coordinate2));
     }
     @Test
+    public void cloneCoordinate() {
+        Coordinate coordinate = new Coordinate(2,3);
+        Coordinate clonedCoordinate = coordinate.clone();
+        assertEquals(coordinate, clonedCoordinate);
+    }
+    /*
+    Hur få fram detta Exception?
+    @Test(expected = CloneNotSupportedException.class)
+    public void cloneNotSupportedCoordinate() {
+        Coordinate coordinate = new Coordinate(2,3);
+        Coordinate clonedCoordinate = coordinate.clone();
+        assertEquals(coordinate, clonedCoordinate);
+    }
+    */
+    @Test
     public void hashcode() {
         Coordinate coordinate1 = new Coordinate(1,2);
         Coordinate coordinate2 = new Coordinate(1,2);

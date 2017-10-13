@@ -1,17 +1,20 @@
 
-public class Player{
+public class Player extends Character {
 
-    private int life, speed;
+    private String name;
+    private int life;
 
-    public Player(){
+    public Player(String name){
+        super(10);
+        this.name = name;
         this.life = 1;
-        this.speed = 10;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public int getLife() {
-        return this.life;
-    }
-    public int getSpeed() {
-        return this.speed;
+        return life;
     }
 }
