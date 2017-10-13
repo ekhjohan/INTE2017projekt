@@ -22,7 +22,7 @@ abstract public class Character {
         int xDiff = Math.abs(this.coordinate.getX() - x);
         int yDiff = Math.abs(this.coordinate.getY() - y);
 
-        if (xDiff > 1 || yDiff > 1)throw new IndexOutOfBoundsException("Too big update");
+        if ((xDiff + yDiff) > 1)throw new IndexOutOfBoundsException("Too big update");
 
 
         this.coordinate = new Coordinate(x, y);

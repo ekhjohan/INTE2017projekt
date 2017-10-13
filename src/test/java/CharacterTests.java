@@ -45,7 +45,7 @@ public class CharacterTests {
         newCharacter.updateCoordinate(2,0);
 
     }
-    
+
     @Test (expected = IndexOutOfBoundsException.class)
     public void testUpdateBothCoordinates(){
         newCharacter.setCoordinate(0,0);
