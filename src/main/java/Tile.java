@@ -16,9 +16,4 @@ public abstract class Tile {
 
         return walkAble == tile.walkAble;
     }
-
-    @Override
-    public int hashCode() {
-        return (walkAble ? 1 : 0);
-    }
 }

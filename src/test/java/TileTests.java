@@ -134,6 +134,17 @@ public class TileTests {
     }
 
     @Test
+    public void testTileHashCodeItem(){
+        FloorTile tile1 = new FloorTile();
+        tile1.addItem(new Beer());
+
+        FloorTile tile2 = new FloorTile();
+        tile2.addItem(new Beer());
+
+        assertEquals(tile1.hashCode(), tile2.hashCode());
+    }
+
+    @Test
     public void testFloorTileHashCode(){
         FloorTile tile1 = new FloorTile();
         FloorTile tile2 = new FloorTile();

@@ -11,4 +11,11 @@ public class Beer extends Item {
     public int getBalanceBuff() {
         return balanceBuff;
     }
+
+    @Override
+    public int hashCode() {
+        int result = alcoholContent;
+        result = 31 * result + balanceBuff;
+        return result;
+    }
 }

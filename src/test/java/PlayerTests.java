@@ -79,11 +79,13 @@ public class PlayerTests {
     }
     @Test
     public void testGetDrunknessSeveralItems(){
+        player.addItem(new Beer());
+        player.addItem((new NonAlcoholicDrink()));
         player.addItem(new Shot());
         player.addItem(new Water());
         player.addItem(new GlassShiver());
         player.addItem(new Wine());
-        assertEquals(1, player.getDrunkness());
+        assertEquals(0, player.getDrunkness());
     }
     @Test
     public void testNegativeDrunkness(){
