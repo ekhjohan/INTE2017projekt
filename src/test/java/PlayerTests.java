@@ -158,15 +158,4 @@ public class PlayerTests {
         assertTrue(player.getCoordinate().equals(new Coordinate(1,0)));
     }
 
-    @Test
-    public void testMovingInvalid(){
-        Map map = new Map(4,4);
-        map.addTile(1, 0, new NonWalkableTile());
-        player.setCoordinate(0,0);
-        player.move(1);
-
-
-    }
-
-
 }
