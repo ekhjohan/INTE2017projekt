@@ -1,9 +1,7 @@
 import items.Item;
 import org.junit.Test;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -103,31 +101,38 @@ public class MapTests {
 
             assertEquals(20, roundedPercent);
     }
-/*
-    @Test
-    public void testReadString() {
-        readStringFromFile("")
-    }*/
-/*
-    @Test
 
     @Test
-    public void maxItemsOnMap(){
-        Map map = new Map(10,10, 100);
+    public void maxItemsOnMap() {
+        Map map = new Map(10, 10, 100);
         assertEquals(10, map.getMaxAmountOfItems());
-    /* @Test
-    public void mapFileExists(){
-        Map map = new Map(10, 10);
-
-        assertNotNull(map.readStringFromFile("Maps.rtf"));
-
     }
 
-    @Test (expected = IOException.class)
-    public void mapFileNotExists(){
-        Map map = new Map(15, 15);
-        map.readStringFromFile("noMap.rtf");
+    @Test
+    public void mapHashCode(){
+        Map map1 = new Map(10,5,3);
+        Map map2 = new Map(10,5,3);
+        assertEquals(map1.hashCode(), map2.hashCode());
     }
-*/
+    @Test
+    public void mapDifferentHashCode(){
+        Map map1 = new Map(10,5,3);
+        Map map2 = new Map(10,6,3);
+        assertNotEquals(map1.hashCode(), map2.hashCode());
+    }
+
+
+    @Test
+    public void mapEquals(){
+        Map map1 = new Map(10,5,3);
+        Map map2 = new Map(10,5,3);
+        assertTrue(map1.equals(map2));
+    }
+    @Test
+    public void mapNotEqual(){
+        Map map1 = new Map(10,6,3);
+        Map map2 = new Map(10,5,3);
+        assertFalse(map1.equals(map2));
+    }
 
 }

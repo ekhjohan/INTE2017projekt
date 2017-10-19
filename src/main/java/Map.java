@@ -59,24 +59,6 @@ public class Map {
         return map;
     }
 
-    public String[] readStringFromFile(String filename) {
-        String[] tokens = null;
-
-        try {
-        FileReader fr = new FileReader(filename);
-        BufferedReader br = new BufferedReader(fr);
-
-        String line = br.readLine();
-        tokens = line.split(",");
-        br.close();
-        } catch (IOException ioe) {
-
-        }
-        return tokens;
-    }
-
-
-
     public void addRandomItemsToMap() {
         while (itemsOnMap.size() < maxAmountOfItems) {
             Item item = selectRandomItem();
@@ -157,10 +139,26 @@ public class Map {
         return this.itemsOnMap;
     }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Map)) return false;
 
+        Map map1 = (Map) o;
 
+        if (height != map1.height) return false;
+        if (width != map1.width) return false;
+        if (maxAmountOfItems != map1.maxAmountOfItems) return false;
+        if (totalAmountOfItems != map1.totalAmountOfItems) return false;
+        return map != null ? map.equals(map1.map) : map1.map == null;
+    }
 
-
-
+    @Override
+    public int hashCode() {
+        int result = height;
+        result = 31 * result + width;
+        result = 31 * result + maxAmountOfItems;
+        result = 31 * result + totalAmountOfItems;
+        return result;
+    }
 }
