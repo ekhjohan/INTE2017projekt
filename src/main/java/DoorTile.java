@@ -1,6 +1,6 @@
 public class DoorTile extends Tile{
 
     public DoorTile(){
-        super(true);
+        super(true, false);
     }
 }

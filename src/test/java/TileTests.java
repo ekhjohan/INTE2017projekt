@@ -23,7 +23,7 @@ public class TileTests {
     @Test
     public void testIsNonWalkAbleTileWalkAble(){
         NonWalkableTile newTile = new NonWalkableTile();
-        assertFalse(newTile.walkAble);
+        assertFalse(newTile.isWalkAble);
     }
 
     @Test
@@ -36,7 +36,7 @@ public class TileTests {
     @Test
     public void testIsFloorTileWalkAble(){
         FloorTile newTile = new FloorTile();
-        assertTrue(newTile.walkAble);
+        assertTrue(newTile.getIsWalkable());
     }
 
 
@@ -98,7 +98,8 @@ public class TileTests {
     @Test
     public void testIsDoorTileWalkAble(){
         DoorTile newTile = new DoorTile();
-        assertTrue(newTile.walkAble);
+        System.out.println("DOORTILE IS WALKABLE: " + newTile.getIsWalkable());
+        assertTrue(newTile.getIsWalkable());
     }
 
     @Test
@@ -154,7 +155,31 @@ public class TileTests {
 
 
 
+    @Test
+    public void testTileIsWalkable(){
+        FloorTile floortile = new FloorTile();
+        boolean tileIsWalkable = floortile.getIsWalkable();
+        assertTrue(tileIsWalkable);
 
+    }
+    @Test
+    public void testTileIsItemsAllowed(){
+        FloorTile floortile = new FloorTile();
+        boolean tileIsItemsAllowd = floortile.getIsItemsAllowed();
+        assertTrue(tileIsItemsAllowd);
+
+    }
+
+    @Test
+    public void testIsItemsAllowedOnFloorTile(){
+        FloorTile floorTile = new FloorTile();
+        assertTrue(floorTile.getIsItemsAllowed());
+    }
+    @Test
+    public void testIsItemsAllowedOnDoorTile(){
+        DoorTile nonWalableTile = new DoorTile();
+        assertFalse(nonWalableTile.getIsItemsAllowed());
+    }
 
 
 }
