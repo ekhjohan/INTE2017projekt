@@ -69,15 +69,12 @@ public class PlayerTests {
 
         assertEquals(1, player.getDrunkness());
     }
-
-
     @Test
     public void testNegativeDrunkness(){
         player.addItem(new Water());
 
         assertEquals(0, player.getDrunkness());
     }
-
     @Test
     public void getDrunknessLevel(){
         player.addItem(new Shot());
@@ -140,4 +137,25 @@ public class PlayerTests {
         player.getDrunkness();
         assertEquals(0, player.getDrunkness());
     }
+
+    @Test
+    public void testMove(){
+        player.setCoordinate(0,0);
+        player.move(1);
+
+        assertEquals(new Coordinate(1,0), player.getCoordinate());
+    }
+
+    @Test
+    public void testMoveLonger(){
+        player.setCoordinate(0,0);
+        player.move(1);
+        player.move(3);
+        player.move(1);
+        player.move(4);
+        player.move(2);
+
+        assertTrue(player.getCoordinate().equals(new Coordinate(1,0)));
+    }
+
 }
