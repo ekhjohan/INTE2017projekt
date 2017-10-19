@@ -57,19 +57,20 @@ public class Map {
         return map;
     }
 
-    public void readMapFromFile(){
+    public String[] readStringFromFile(String filename) throws IOException{
 
-        try{
-            FileReader fr = new FileReader("Maps.rtf");
+        String[] tokens = null;
+
+
+            FileReader fr = new FileReader(filename);
             BufferedReader br = new BufferedReader(fr);
 
             String line = br.readLine();
+            tokens = line.split(",");
 
-        }catch(FileNotFoundException fe){
+            return tokens;
 
-        }catch (IOException ie){
-            //
-        }
+
 
 
     }

@@ -1,6 +1,9 @@
 import items.Item;
 import org.junit.Test;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.text.DecimalFormat;
 
 import java.io.FileNotFoundException;
@@ -90,6 +93,25 @@ public class MapTests {
 
             assertEquals(20, roundedPercent);
     }
+
+    /* @Test
+    public void mapFileExists(){
+        Map map = new Map(10, 10);
+
+        assertNotNull(map.readStringFromFile("Maps.rtf"));
+
+    }
+
+    @Test (expected = IOException.class)
+    public void mapFileNotExists(){
+        Map map = new Map(15, 15);
+        map.readStringFromFile("noMap.rtf");
+    }
+
+    */
+
+
+
 
 
 
