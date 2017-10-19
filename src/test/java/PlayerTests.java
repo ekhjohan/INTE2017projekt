@@ -106,8 +106,19 @@ public class PlayerTests {
         player.move(3);
         player.move(1);
         player.move(4);
+        player.move(2);
 
-        assertTrue(player.getCoordinate().equals(new Coordinate(2,0)));
+        assertTrue(player.getCoordinate().equals(new Coordinate(1,0)));
+    }
+
+    @Test
+    public void testMovingInvalid(){
+        Map map = new Map(4,4);
+        map.addTile(1, 0, new NonWalkableTile());
+        player.setCoordinate(0,0);
+        player.move(1);
+
+
     }
 
 
