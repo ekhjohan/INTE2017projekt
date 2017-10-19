@@ -103,6 +103,13 @@ public class MapTests {
 
             assertEquals(20, roundedPercent);
     }
+/*
+    @Test
+    public void testReadString() {
+        readStringFromFile("")
+    }*/
+/*
+    @Test
 
     @Test
     public void maxItemsOnMap(){
@@ -121,13 +128,6 @@ public class MapTests {
         Map map = new Map(15, 15);
         map.readStringFromFile("noMap.rtf");
     }
-
-    */
-
-
-
-
-
-    }
+*/
 
 }

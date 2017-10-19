@@ -59,18 +59,20 @@ public class Map {
         return map;
     }
 
-   public String[] readStringFromFile(String filename) throws IOException{
-
+    public String[] readStringFromFile(String filename) {
         String[] tokens = null;
 
+        try {
+        FileReader fr = new FileReader(filename);
+        BufferedReader br = new BufferedReader(fr);
 
-            FileReader fr = new FileReader(filename);
-            BufferedReader br = new BufferedReader(fr);
+        String line = br.readLine();
+        tokens = line.split(",");
+        br.close();
+        } catch (IOException ioe) {
 
-            String line = br.readLine();
-            tokens = line.split(",");
-
-            return tokens;
+        }
+        return tokens;
     }
 
 
