@@ -96,7 +96,19 @@ public class PlayerTests {
         player.setCoordinate(0,0);
         player.move(1);
 
-
         assertEquals(new Coordinate(1,0), player.getCoordinate());
     }
+
+    @Test
+    public void testMoveLonger(){
+        player.setCoordinate(0,0);
+        player.move(1);
+        player.move(3);
+        player.move(1);
+        player.move(4);
+
+        assertTrue(player.getCoordinate().equals(new Coordinate(2,0)));
+    }
+
+
 }

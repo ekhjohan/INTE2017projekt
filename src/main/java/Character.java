@@ -30,6 +30,22 @@ abstract public class Character {
 
     public void move(int direction){
 
+        switch (direction){
+            case 1:
+                this.coordinate = new Coordinate(this.coordinate.getX()+1, this.coordinate.getY());
+                break;
+            case 2:
+                this.coordinate = new Coordinate(this.coordinate.getX()-1, this.coordinate.getY());
+                break;
+            case 3:
+                this.coordinate = new Coordinate(this.coordinate.getX(), this.coordinate.getY()+1);
+                break;
+            case 4:
+                this.coordinate = new Coordinate(this.coordinate.getX(), this.coordinate.getY()-1);
+                break;
+            default:
+                break;
+        }
     }
 
 }
