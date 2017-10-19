@@ -9,15 +9,17 @@ import java.util.HashMap;
 
 public class Map {
 
-    private int height, width, maxAmountOfItems;
+    private int height, width, maxAmountOfItems, totalAmountOfItems;
+    private ArrayList<Item> itemsOnMap = new ArrayList<Item>();
     private HashMap<Coordinate,Tile> map;
 
-    public Map(int height, int width) {
+    public Map(int height, int width, int totalAmountOfItems) {
         if (height < 3 || width < 3) {
             throw new IllegalArgumentException("För liten karta");
         }
         this.height = height;
         this.width = width;
+        this.totalAmountOfItems = totalAmountOfItems;
         this.maxAmountOfItems = (int)((height * width) * 0.1);
         initMap();
     }
@@ -57,7 +59,7 @@ public class Map {
         return map;
     }
 
-    public String[] readStringFromFile(String filename) throws IOException{
+   public String[] readStringFromFile(String filename) throws IOException{
 
         String[] tokens = null;
 
@@ -69,61 +71,55 @@ public class Map {
             tokens = line.split(",");
 
             return tokens;
-
-
-
-
     }
 
 
 
-    public void addRandomItemsToMap(int amountOfItems){
-        List<Item> items = selectRandomItems(amountOfItems);
-        Random random = new Random();
-        Set<Coordinate> keys = map.keySet();
-        Coordinate[] coordinates = keys.toArray(new Coordinate[keys.size()]);
+    public void addRandomItemsToMap() {
+        while (itemsOnMap.size() < maxAmountOfItems) {
+            Item item = selectRandomItem();
+            Random random = new Random();
+            Set<Coordinate> keys = map.keySet();
+            Coordinate[] coordinates = keys.toArray(new Coordinate[keys.size()]);
 
-        while(items.size() > 0) {
-            int randomCoordinate = random.nextInt(coordinates.length);
-            Coordinate coordinate = coordinates[randomCoordinate];
-            Tile tile = map.get(coordinate);
-            if (tile.getIsWalkable() && tile.getIsItemsAllowed() && !((FloorTile)tile).hasItem()) {
-                ((FloorTile)tile).addItem(items.get(0));
-                items.remove(0);
+            while (item != null) {
+                int randomCoordinate = random.nextInt(coordinates.length);
+                Coordinate coordinate = coordinates[randomCoordinate];
+                Tile tile = map.get(coordinate);
+                if (tile.getIsWalkable() && tile.getIsItemsAllowed() && !((FloorTile) tile).hasItem()) {
+                    ((FloorTile) tile).addItem(item);
+                    itemsOnMap.add(item);
+                    item = null;
+                }
             }
         }
     }
 
-    public List selectRandomItems(int amountOfItems){
-        List items = new ArrayList();
-        int numberOfItems = amountOfItems;
+    public Item selectRandomItem(){
+            Item item = null;
 
-        for(int i = 0; i<numberOfItems; i++){
             switch(getRandomOption()){
                 case 0:
-                    items.add(new NonAlcoholicDrink());
+                    item = new NonAlcoholicDrink();
                     break;
                 case 1:
-                    items.add(new Water());
+                    item = new Water();
                     break;
                 case 2:
-                    items.add(new Shot());
+                    item = new Shot();
                     break;
                 case 3:
-                    items.add(new GlassShiver());
+                    item = new GlassShiver();
                     break;
                 case 4:
-                    items.add(new Wine());
+                    item = new Wine();
                     break;
                 case 5:
-                    items.add(new Beer());
+                    item = new Beer();
                     break;
-                default:
-                    System.out.println("Item not available");
             }
 
-        }
-        return items;
+        return item;
     }
 
 
@@ -152,6 +148,12 @@ public class Map {
     }
 
 
+    public int getMaxAmountOfItems(){
+        return this.maxAmountOfItems;
+    }
+    public ArrayList<Item> getItemsOnMapList(){
+        return this.itemsOnMap;
+    }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 

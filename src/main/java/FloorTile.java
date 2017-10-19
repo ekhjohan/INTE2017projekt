@@ -33,17 +33,16 @@ public class FloorTile extends Tile{
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof FloorTile)) return false;
+        if (!super.equals(o)) return false;
 
         FloorTile floorTile = (FloorTile) o;
-        return this.item == null && floorTile.getItem() == null || item.equals(floorTile.getItem());
 
+        return item != null ? item.equals(floorTile.item) : floorTile.item == null;
     }
 
-    //Can't compare tiles with item==null
     @Override
     public int hashCode() {
-        if (this.item==null) return -1;
-        return item.hashCode();
+        return item != null ? item.hashCode() : 0;
     }
 }

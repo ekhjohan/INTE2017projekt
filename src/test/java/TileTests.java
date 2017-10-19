@@ -98,7 +98,6 @@ public class TileTests {
     @Test
     public void testIsDoorTileWalkAble(){
         DoorTile newTile = new DoorTile();
-        System.out.println("DOORTILE IS WALKABLE: " + newTile.getIsWalkable());
         assertTrue(newTile.getIsWalkable());
     }
 
@@ -115,6 +114,13 @@ public class TileTests {
         FloorTile tile2 = new FloorTile();
 
         assertTrue(tile1.equals(tile2));
+    }
+
+    @Test
+    public void testEqualsInTile(){
+        Tile floorTile = new FloorTile();
+        Tile doorTile = new DoorTile();
+        assertFalse(floorTile.equals(doorTile));
     }
 
     @Test

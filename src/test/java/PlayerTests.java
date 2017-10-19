@@ -43,11 +43,6 @@ public class PlayerTests {
         assertEquals(coord, player.getCoordinate());
     }
 
-    //@Test
-    public void testEmptyItemList(){
-
-    }
-
     @Test
     public void testItemListIsNull(){
 

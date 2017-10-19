@@ -5,8 +5,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.DecimalFormat;
-
-import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import static org.junit.Assert.*;
 
@@ -14,25 +13,24 @@ public class MapTests {
 
     @Test
     public void createMap() {
-        Map map = new Map(10,5);
+        Map map = new Map(10,5, 1);
         assertNotNull(map);
     }
     @Test
     public void mapHasHeight() {
-        Map map = new Map(10,5);
+        Map map = new Map(10,5, 1);
         int height = map.getHeight();
         assertEquals(10, height);
     }
     @Test
     public void mapHasWidth() {
-        Map map = new Map(10,5);
+        Map map = new Map(10,5,1 );
         int width = map.getWidth();
         assertEquals(5, width);
     }
-
     @Test
     public void testMapStructure(){
-       Map map = new Map(10, 5);
+        Map map = new Map(10, 5, 1);
         for(int x = 0; x < map.getWidth(); x++) {
             for(int y = 0; y < map.getHeight(); y++) {
                 if(x==0){ // Vänstra sidan
@@ -53,7 +51,7 @@ public class MapTests {
 
     @Test
     public void addTileToMap() {
-        Map map = new Map(10,5);
+        Map map = new Map(10,5, 1);
         map.addTile(0, 1, new FloorTile());
         Tile tile = map.getTileOnCoordinate(0,1);
         assertTrue(tile.equals(new FloorTile()));
@@ -63,27 +61,39 @@ public class MapTests {
     public void testMinimumMapSize() {
         int height = 2;
         int width = 2;
-        Map map = new Map(height, width);
+        Map map = new Map(height, width, 1);
     }
 
     @Test
     public void addItemsToMapTiles(){
-        Map map = new Map(10,5);
-        map.addRandomItemsToMap(10);
-        for(Tile tile : map.getMap().values()){
+        Map map = new Map(10,10, 100);
+        map.addRandomItemsToMap();
+        /*for(Coordinate coordinate : map.getMap().keySet()){
+            Tile tile = map.getMap().get(coordinate);
             if(tile.getIsItemsAllowed() && ((FloorTile) tile).hasItem()){
                 Item item = ((FloorTile) tile).getItem();
-                System.out.println(item);
+
+                System.out.println("Tile: " + tile + ", Coord: " + coordinate + ", Item: " + item);
             }
-        }
-        assertTrue(true);
+        }*/
 
-
+        assertEquals(10,map.getItemsOnMapList().size());
     }
 
     @Test
+    public void itemPickedUpAndNewItemAdded(){
+        Map map = new Map(10,10, 100);
+        map.addRandomItemsToMap();
+        map.getItemsOnMapList().remove(0);
+        assertEquals(9, map.getItemsOnMapList().size());
+        map.addRandomItemsToMap();
+        assertEquals(10, map.getItemsOnMapList().size());
+    }
+
+
+    @Test
     public void getRandomOption(){
-        Map map = new Map(10,10);
+        Map map = new Map(10,10, 1);
         int[] results = {1,2,3,4,5};
         for(int i = 0; i<10000; i++) {
             int option = map.getRandomOption();
@@ -94,6 +104,10 @@ public class MapTests {
             assertEquals(20, roundedPercent);
     }
 
+    @Test
+    public void maxItemsOnMap(){
+        Map map = new Map(10,10, 100);
+        assertEquals(10, map.getMaxAmountOfItems());
     /* @Test
     public void mapFileExists(){
         Map map = new Map(10, 10);
@@ -114,7 +128,6 @@ public class MapTests {
 
 
 
-
-
+    }
 
 }
