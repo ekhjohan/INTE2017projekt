@@ -58,10 +58,16 @@ public class MapTests {
     @Test(expected = IllegalArgumentException.class)
     public void testMinimumMapSize() {
         int height = 2;
-        int width = 2;
+        int width = 1;
         Map map = new Map(height, width, 1);
     }
-
+    @Test(expected = IllegalArgumentException.class)
+    public void numberOfItemsTooLow() {
+        int height = 10;
+        int width = 20;
+        int numberOfItems = 0;
+        Map map = new Map(height, width, numberOfItems);
+    }
     @Test
     public void addItemsToMapTiles(){
         Map map = new Map(10,10, 100);

@@ -19,6 +19,11 @@ public class Map {
         }
         this.height = height;
         this.width = width;
+
+
+        if (totalAmountOfItems <= 0) {
+            throw new IllegalArgumentException("För lågt antal items");
+        }
         this.totalAmountOfItems = totalAmountOfItems;
         this.maxAmountOfItems = (int)((height * width) * 0.1);
         initMap();

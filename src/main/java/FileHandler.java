@@ -8,12 +8,17 @@ public class FileHandler {
 
     public String[] readStringFromFile(String filename) {
         String[] tokens = null;
-
+        if(checkFilenameLength(filename)){
+            throw new IllegalArgumentException("Felaktig längd på filnamn");
+        }
         try {
             FileReader fr = new FileReader(filename);
             BufferedReader br = new BufferedReader(fr);
 
             String line = br.readLine();
+            if(line == null){
+                throw new NullPointerException("Textfilen är tom");
+            }
             tokens = line.split(",");
             br.close();
         } catch (IOException ioe) {
@@ -33,5 +38,8 @@ public class FileHandler {
         return map;
     }
 
+    public boolean checkFilenameLength(String filename){
+        return filename.length() < 5 || filename.length() > 216;
+    }
 
 }
