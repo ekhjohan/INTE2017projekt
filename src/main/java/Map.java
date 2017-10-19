@@ -6,10 +6,14 @@ public class Map {
     private HashMap<Coordinate,Tile> map;
 
     public Map(int height, int width) {
+        if (height < 3 || width < 3) {
+            throw new IllegalArgumentException("För liten karta");
+        }
         this.height = height;
         this.width = width;
         initMap();
     }
+
     public void initMap(){
         map = new HashMap<Coordinate,Tile>();
         for(int x = 0; x < height; x++) {
@@ -34,4 +38,6 @@ public class Map {
     public HashMap<Coordinate, Tile> getMap() {
         return map;
     }
+
+
 }

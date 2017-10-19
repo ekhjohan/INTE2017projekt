@@ -45,6 +45,13 @@ public class MapTests {
         assertTrue(tile.equals(new FloorTile()));
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testMinimumMapSize() {
+        int height = 2;
+        int width = 2;
+        Map map = new Map(height, width);
+    }
+
 
 
 }
