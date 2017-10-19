@@ -105,9 +105,7 @@ public class PlayerTests {
         player.addItem(new Shot());
         player.addItem(new Shot());
         player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
+
         player.addItem(new Shot());
         player.addItem(new Shot());
         player.addItem(new Shot());
@@ -154,6 +152,28 @@ public class PlayerTests {
         player.move(2);
 
         assertTrue(player.getCoordinate().equals(new Coordinate(1,0)));
+    }
+
+
+    @Test
+    public void calculateMissMove(){
+        player.setCoordinate(0,0);
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+
+        player.calcMove(1);
+        assertTrue(player.getCoordinate().equals(new Coordinate(1,0)));
+
     }
 
 }

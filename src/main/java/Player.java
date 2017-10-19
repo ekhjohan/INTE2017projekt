@@ -109,5 +109,7 @@ public class Player extends Character {
         }
         return level;
     }
-
+    public void calcMove(int direction){
+        super.move(direction);
+    }
 }
