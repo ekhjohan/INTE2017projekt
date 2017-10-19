@@ -27,6 +27,8 @@ abstract public class Character {
 
         this.coordinate = new Coordinate(x, y);
     }
+
+
 }
 
 

@@ -6,7 +6,7 @@ public class FloorTile extends Tile{
 
 
     public FloorTile(){
-        super(true);
+        super(true, true);
     }
 
     public void addItem(Item newItem){
