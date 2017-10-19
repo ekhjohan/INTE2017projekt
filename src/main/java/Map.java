@@ -19,6 +19,11 @@ public class Map {
         }
         this.height = height;
         this.width = width;
+
+
+        if (totalAmountOfItems <= 0) {
+            throw new IllegalArgumentException("För lågt antal items");
+        }
         this.totalAmountOfItems = totalAmountOfItems;
         this.maxAmountOfItems = (int)((height * width) * 0.1);
         initMap();
@@ -58,22 +63,6 @@ public class Map {
     public HashMap<Coordinate, Tile> getMap() {
         return map;
     }
-
-   public String[] readStringFromFile(String filename) throws IOException{
-
-        String[] tokens = null;
-
-
-            FileReader fr = new FileReader(filename);
-            BufferedReader br = new BufferedReader(fr);
-
-            String line = br.readLine();
-            tokens = line.split(",");
-
-            return tokens;
-    }
-
-
 
     public void addRandomItemsToMap() {
         while (itemsOnMap.size() < maxAmountOfItems) {
@@ -155,10 +144,26 @@ public class Map {
         return this.itemsOnMap;
     }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Map)) return false;
 
+        Map map1 = (Map) o;
 
+        if (height != map1.height) return false;
+        if (width != map1.width) return false;
+        if (maxAmountOfItems != map1.maxAmountOfItems) return false;
+        if (totalAmountOfItems != map1.totalAmountOfItems) return false;
+        return map != null ? map.equals(map1.map) : map1.map == null;
+    }
 
-
-
+    @Override
+    public int hashCode() {
+        int result = height;
+        result = 31 * result + width;
+        result = 31 * result + maxAmountOfItems;
+        result = 31 * result + totalAmountOfItems;
+        return result;
+    }
 }
