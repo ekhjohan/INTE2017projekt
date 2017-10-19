@@ -3,6 +3,7 @@ import items.*;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Random;
 
 public class Player extends Character {
 
@@ -96,7 +97,7 @@ public class Player extends Character {
         double initialLevel=5.0;
         double multiplicator=1.3;
         double dr=drunkness;
-        System.out.println("Initial Drunkness: "+dr);
+//        System.out.println("Initial Drunkness: "+dr);
         int level=0;
         while(dr>0.0){
 
@@ -107,9 +108,48 @@ public class Player extends Character {
 
 
         }
+//        System.out.println("drunknessLevel:"+level);
         return level;
     }
     public void calcMove(int direction){
-        super.move(direction);
+        double oddsOfWrongStep = ((double)getDrunkness())*.05;
+        int i=calcMisStep(oddsOfWrongStep);
+
+        switch (i){
+            case 0:
+                if(direction!=1)
+                    super.move(1);
+                else super.move(4);
+                break;
+            case 1:
+                if(direction!=2)
+                    super.move(2);
+                else super.move(4);
+                break;
+            case 2:
+                if(direction!=3)
+                    super.move(3);
+                else super.move(4);
+                break;
+            case 3:super.move(direction);
+        }
+    }
+
+
+    private int calcMisStep(double odds){
+        Random random = new Random();
+        double[] probabilities = {odds/3.0,odds/3.0,odds/3.0, 1.0-odds};
+        int[] results = {0,1,2,3};
+
+        double num = random.nextDouble();
+        double s = 0;
+        int lastIndex = probabilities.length - 1;
+        for (int i = 0; i < lastIndex; ++i) {
+            s += probabilities[i];
+            if (num < s) {
+                return results[i];
+            }
+        }
+        return results[lastIndex];
     }
 }

@@ -170,9 +170,20 @@ public class PlayerTests {
         player.addItem(new Shot());
         player.addItem(new Shot());
         player.addItem(new Shot());
-
-        player.calcMove(1);
-        assertTrue(player.getCoordinate().equals(new Coordinate(1,0)));
+        int moveRight=0;
+        int moveLeft=0;
+        int moveUp=0;
+        int moveDown=0;
+        for(int i=0; i<10000;i++){
+            player.setCoordinate(0,0);
+            player.calcMove(1);
+            if(player.getCoordinate().getX()==1) moveRight++;
+            else if(player.getCoordinate().getX()==-1) moveLeft++;
+            else if(player.getCoordinate().getY()==-1) moveUp++;
+            else if(player.getCoordinate().getY()==1) moveDown++;
+        }
+        System.out.println("Right moves out of 1000000: "+moveRight+". \nOther directions:\nLeft:"+moveLeft+"\nUp:"+moveUp+"\nDown:"+moveDown);
+        assertTrue(moveRight<8500&&moveRight>7500);
 
     }
 
