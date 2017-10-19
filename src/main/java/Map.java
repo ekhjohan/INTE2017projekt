@@ -1,6 +1,11 @@
 import items.*;
 
 import java.util.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.HashMap;
 
 public class Map {
 
@@ -19,9 +24,19 @@ public class Map {
 
     public void initMap(){
         map = new HashMap<Coordinate,Tile>();
-        for(int x = 0; x < height; x++) {
-            for(int y = 0; y < width; y++) {
-                map.put(new Coordinate(x,y),new FloorTile());
+        for(int x = 0; x < width; x++) {
+            for(int y = 0; y < height; y++) {
+                if(x==0){ // Vänstra sidan
+                    map.put(new Coordinate(x,y),new NonWalkableTile());
+                }else if(y==0){ //Norra sidan
+                    map.put(new Coordinate(x,y),new NonWalkableTile());
+                }else if(y == height){ //Högra sidan
+                    map.put(new Coordinate(x,y),new NonWalkableTile());
+                }else if (x==width){ //Södra sidan
+                    map.put(new Coordinate(x,y),new NonWalkableTile());
+                }else{ //Gåbar yta
+                    map.put(new Coordinate(x,y),new FloorTile());
+                }
             }
         }
     }
@@ -41,6 +56,25 @@ public class Map {
     public HashMap<Coordinate, Tile> getMap() {
         return map;
     }
+
+    public void readMapFromFile(){
+
+        try{
+            FileReader fr = new FileReader("Maps.rtf");
+            BufferedReader br = new BufferedReader(fr);
+
+            String line = br.readLine();
+
+        }catch(FileNotFoundException fe){
+
+        }catch (IOException ie){
+            //
+        }
+
+
+    }
+
+
 
     public void addRandomItemsToMap(int amountOfItems){
         List<Item> items = selectRandomItems(amountOfItems);
