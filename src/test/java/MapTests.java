@@ -2,6 +2,8 @@ import items.Item;
 import org.junit.Test;
 
 import java.text.DecimalFormat;
+
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import static org.junit.Assert.*;
 
@@ -24,19 +26,26 @@ public class MapTests {
         int width = map.getWidth();
         assertEquals(5, width);
     }
+
     @Test
-    public void initMap() {
-        int height = 10;
-        int width = 5;
-        HashMap<Coordinate, Tile> expectedMap = new HashMap<Coordinate,Tile>();
-        for(int x = 0; x < height; x++) {
-            for(int y = 0; y < width; y++) {
-                expectedMap.put(new Coordinate(x,y),new FloorTile());
+    public void testMapStructure(){
+       Map map = new Map(10, 5);
+        for(int x = 0; x < map.getWidth(); x++) {
+            for(int y = 0; y < map.getHeight(); y++) {
+                if(x==0){ // Vänstra sidan
+                    assertEquals(NonWalkableTile.class, map.getTileOnCoordinate(x,y).getClass());
+                }else if(y==0){ //Norra sidan
+                    assertEquals(NonWalkableTile.class, map.getTileOnCoordinate(x,y).getClass());
+                }else if(y == map.getHeight()){ //Högra sidan
+                    assertEquals(NonWalkableTile.class, map.getTileOnCoordinate(x,y).getClass());
+                }else if (x==map.getWidth()){ //Södra sidan
+                    assertEquals(NonWalkableTile.class, map.getTileOnCoordinate(x,y).getClass());
+                }else{ //Gåbar yta
+                    assertEquals(FloorTile.class, map.getTileOnCoordinate(x,y).getClass());
+                }
             }
         }
-        Map map = new Map(height, width);
-        HashMap<Coordinate, Tile> actualMap = map.getMap();
-        assertEquals(expectedMap, actualMap);
+
     }
 
     @Test
@@ -81,6 +90,9 @@ public class MapTests {
 
             assertEquals(20, roundedPercent);
     }
+
+ 
+
 
 
 }
