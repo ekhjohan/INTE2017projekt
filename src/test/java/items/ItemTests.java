@@ -1,4 +1,4 @@
-package Items;
+package items;
 
 import static junit.framework.TestCase.assertFalse;
 import static org.junit.Assert.assertTrue;

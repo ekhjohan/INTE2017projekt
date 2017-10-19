@@ -1,4 +1,4 @@
-package Items;
+package items;
 
 public class Water extends Item {
     private final int alcoholContent = -2;

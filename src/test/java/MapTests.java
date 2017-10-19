@@ -28,7 +28,7 @@ public class MapTests {
         HashMap<Coordinate, Tile> expectedMap = new HashMap<Coordinate,Tile>();
         for(int x = 0; x < height; x++) {
             for(int y = 0; y < width; y++) {
-                expectedMap.put(new Coordinate(x,y),new NonWalkAbleTile());
+                expectedMap.put(new Coordinate(x,y),new NonWalkableTile());
             }
         }
         Map map = new Map(height, width);

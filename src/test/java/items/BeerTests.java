@@ -1,13 +1,15 @@
-package Items;
+package items;
 
 import org.junit.Test;
 
 import static org.junit.Assert.assertNotNull;
 
-public class ShotTests {
+public class BeerTests {
     @Test
-    public void createShotTest(){
-        Item i = new Shot();
+    public void testCreateBeer(){
+        Item i = new Beer();
         assertNotNull(i);
     }
+
 }
+

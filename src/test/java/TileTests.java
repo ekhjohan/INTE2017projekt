@@ -1,7 +1,6 @@
-import Items.Beer;
-import Items.Item;
-import Items.Water;
-import com.sun.org.apache.xpath.internal.functions.FuncFalse;
+import items.Beer;
+import items.Item;
+import items.Water;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -16,14 +15,14 @@ public class TileTests {
 
     @Test
     public void testCreateNonWalkAbleTileWithFalse(){
-        NonWalkAbleTile newTile = new NonWalkAbleTile();
+        NonWalkableTile newTile = new NonWalkableTile();
         assertNotNull(newTile);
 
     }
 
     @Test
     public void testIsNonWalkAbleTileWalkAble(){
-        NonWalkAbleTile newTile = new NonWalkAbleTile();
+        NonWalkableTile newTile = new NonWalkableTile();
         assertFalse(newTile.walkAble);
     }
 
@@ -119,7 +118,7 @@ public class TileTests {
 
     @Test
     public void testTileNotEqual(){
-        Tile tile1 = new NonWalkAbleTile();
+        Tile tile1 = new NonWalkableTile();
         Tile tile2 = new FloorTile();
 
         assertFalse(tile1.equals(tile2));

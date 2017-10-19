@@ -1,4 +1,4 @@
-package Items;
+package items;
 
 public class Beer extends Item {
     private final int alcoholContent = 1;

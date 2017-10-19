@@ -14,7 +14,7 @@ public class Map {
         map = new HashMap<Coordinate,Tile>();
         for(int x = 0; x < height; x++) {
             for(int y = 0; y < width; y++) {
-                map.put(new Coordinate(x,y),new NonWalkAbleTile());
+                map.put(new Coordinate(x,y),new NonWalkableTile());
             }
         }
     }

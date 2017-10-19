@@ -1,4 +1,4 @@
-import Items.Item;
+import items.Item;
 
 public class FloorTile extends Tile{
 

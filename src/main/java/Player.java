@@ -1,4 +1,4 @@
-import Items.*;
+import items.*;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -49,27 +49,27 @@ public class Player extends Character {
                 Water wa;
                 NonAlcoholicDrink nad;
                 System.out.println(current.getClass());
-                if (current.getClass().equals(Items.Beer.class)){
+                if (current.getClass().equals(items.Beer.class)){
                     b = (Beer) current;
                     System.out.println("Beer");
                     drunkness+=b.getAlcoholContent();
                 }
-                else if (current.getClass().equals(Items.Wine.class)){
+                else if (current.getClass().equals(items.Wine.class)){
                     w = (Wine) current;
                     System.out.println("Wine");
                     drunkness+=w.getAlcoholContent();
                 }
-                else if (current.getClass().equals(Items.Shot.class)){
+                else if (current.getClass().equals(items.Shot.class)){
                     s = (Shot) current;
                     System.out.println("Shot");
                     drunkness+=s.getAlcoholContent();
                 }
-                else if (current.getClass().equals(Items.Water.class)){
+                else if (current.getClass().equals(items.Water.class)){
                     wa = (Water) current;
                     System.out.println("Water");
                     drunkness+=wa.getAlcoholContent();
                 }
-                else if (current.getClass().equals(Items.NonAlcoholicDrink.class)){
+                else if (current.getClass().equals(items.NonAlcoholicDrink.class)){
                     nad = (NonAlcoholicDrink) current;
                     System.out.println("nonalco");
                     drunkness+=nad.getAlcoholContent();
