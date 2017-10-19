@@ -5,7 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class PlayerTests {
-    Player player;
+    private Player player;
 
     @Before
     public void player() {
@@ -43,11 +43,6 @@ public class PlayerTests {
         assertEquals(coord, player.getCoordinate());
     }
 
-    //@Test
-    public void testEmptyItemList(){
-
-    }
-
     @Test
     public void testItemListIsNull(){
 
@@ -72,22 +67,74 @@ public class PlayerTests {
     public void testGetDrunkessOneItem(){
         player.addItem(new Shot());
 
-        assertEquals(2, player.getDrunkness());
-    }
-    @Test
-    public void testGetDrunknessSeveralItems(){
-        player.addItem(new Beer());
-        player.addItem((new NonAlcoholicDrink()));
-        player.addItem(new Shot());
-        player.addItem(new Water());
-        player.addItem(new GlassShiver());
-        player.addItem(new Wine());
-        assertEquals(0, player.getDrunkness());
+        assertEquals(1, player.getDrunkness());
     }
     @Test
     public void testNegativeDrunkness(){
         player.addItem(new Water());
 
+        assertEquals(0, player.getDrunkness());
+    }
+    @Test
+    public void getDrunknessLevel(){
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        //level 1, drunkness 6 mod1
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        //level 2, drunkness 12, mod0,5
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+        player.addItem(new Shot());
+
+
+        assertEquals(8 , player.getDrunkness());
+    }
+    @Test
+    public void testTooManyWater(){
+        player.addItem(new Beer());
+        player.addItem(new Water());
+        player.addItem(new Water());
+
+        player.getDrunkness();
         assertEquals(0, player.getDrunkness());
     }
 

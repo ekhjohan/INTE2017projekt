@@ -1,11 +1,22 @@
 
 public abstract class Tile {
 
-    boolean walkAble;
+    boolean isWalkAble;
+    boolean isItemsAllowed;
 
-    public Tile(Boolean walkAble){
-        this.walkAble = walkAble;
+    public Tile(boolean isWalkable, boolean isItemsAllowed){
+        this.isWalkAble = isWalkable;
+        this.isItemsAllowed = isItemsAllowed;
     }
+
+
+    public boolean getIsWalkable() {
+        return isWalkAble;
+    }
+    public boolean getIsItemsAllowed(){
+        return isItemsAllowed;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -14,6 +25,6 @@ public abstract class Tile {
 
         Tile tile = (Tile) o;
 
-        return walkAble == tile.walkAble;
+        return isWalkAble == tile.isWalkAble;
     }
 }

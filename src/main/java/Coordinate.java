@@ -36,4 +36,9 @@ public class Coordinate implements Cloneable {
             throw new AssertionError(); // Finns inget test för denna Exception än...
         }
     }
+
+    @Override
+    public String toString() {
+        return "Coordinate{" + "x=" + x + ", y=" + y +"}";
+    }
 }
