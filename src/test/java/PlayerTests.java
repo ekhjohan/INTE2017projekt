@@ -80,11 +80,9 @@ public class PlayerTests {
         player.addItem(new Shot());
         player.addItem(new Shot());
         player.addItem(new Shot());
-        //level 1, drunkness 6 mod1
         player.addItem(new Shot());
         player.addItem(new Shot());
         player.addItem(new Shot());
-        //level 2, drunkness 12, mod0,5
         player.addItem(new Shot());
         player.addItem(new Shot());
         player.addItem(new Shot());
