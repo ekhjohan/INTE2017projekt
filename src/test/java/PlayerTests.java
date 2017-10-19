@@ -91,4 +91,12 @@ public class PlayerTests {
         assertEquals(0, player.getDrunkness());
     }
 
+    @Test
+    public void testMove(){
+        player.setCoordinate(0,0);
+        player.move(1);
+
+
+        assertEquals(new Coordinate(1,0), player.getCoordinate());
+    }
 }

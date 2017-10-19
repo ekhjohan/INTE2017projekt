@@ -19,14 +19,19 @@ abstract public class Character {
     }
 
     public void updateCoordinate(int x , int y) throws IndexOutOfBoundsException{
-        int xDiff = Math.abs(this.coordinate.getX() - x);
-        int yDiff = Math.abs(this.coordinate.getY() - y);
+            int xDiff = Math.abs(this.coordinate.getX() - x);
+            int yDiff = Math.abs(this.coordinate.getY() - y);
 
-        if ((xDiff + yDiff) > 1)throw new IndexOutOfBoundsException("Too big update");
+            if ((xDiff + yDiff) > 1)throw new IndexOutOfBoundsException("Too big update");
 
 
-        this.coordinate = new Coordinate(x, y);
+            this.coordinate = new Coordinate(x, y);
     }
+
+    public void move(int direction){
+
+    }
+
 }
 
 
