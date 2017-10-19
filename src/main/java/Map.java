@@ -14,7 +14,7 @@ public class Map {
     private HashMap<Coordinate,Tile> map;
 
     public Map(int height, int width, int totalAmountOfItems) {
-        if (height < 3 || width < 3) {
+        if (height < 4 || width < 4) {
             throw new IllegalArgumentException("För liten karta");
         }
         this.height = height;
