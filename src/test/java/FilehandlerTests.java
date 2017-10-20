@@ -80,4 +80,19 @@ public class FilehandlerTests {
         String[] fileContent = fileHandler.readStringFromFile("fileWithIncorrectParameters.txt");
         Integer.parseInt(fileContent[0]);
     }
+
+    @Test
+    public void emptyParameter(){
+        String[] parameters = new String[]{"21", "", "1"};
+        FileHandler fileHandler = new FileHandler();
+        boolean isValid = fileHandler.checkIfParametersEmpty(parameters);
+        assertFalse(isValid);
+    }
+
+    @Test(expected = IllegalArgumentException .class)
+    public void emptyParameterFileReader(){
+        String filename = "emptyParameter.txt";
+        FileHandler fileHandler = new FileHandler();
+        fileHandler.createMapFromFile(filename);
+    }
 }

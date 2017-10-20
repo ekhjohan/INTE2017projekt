@@ -36,6 +36,9 @@ public class FileHandler {
         int y = Integer.parseInt(mapInfo[1]);
         int numberOfItems = Integer.parseInt(mapInfo[2]);
 
+        if(!checkIfParametersEmpty(mapInfo)){
+            throw new IllegalArgumentException("Inkorrekta parametervärden");
+        }
         Map map = new Map(x, y, numberOfItems);
         return map;
     }
@@ -50,5 +53,14 @@ public class FileHandler {
         int maxLength = 260 - path.length();
         return filename.length() <= maxLength;
     }
+
+    public boolean checkIfParametersEmpty(String [] mapInfo){
+
+        if(mapInfo[0].length() < 1 ||  mapInfo[1].length() < 1 || mapInfo[2].length() < 1){
+            return false;
+        }
+        return true;
+    }
+
 
 }
