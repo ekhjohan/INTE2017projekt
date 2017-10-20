@@ -188,4 +188,22 @@ public class TileTests {
     }
 
 
+    @Test
+    public void testAddCharacterToTile(){
+        FloorTile newTile = new FloorTile();
+        Character player = new Player("Player");
+        newTile.addCharacter(player);
+        assertTrue(newTile.hasCharacter());
+    }
+
+    @Test
+    public void testRemoveCharacterFromTile(){
+        FloorTile newTile = new FloorTile();
+        Character player = new Player("Player");
+        newTile.addCharacter(player);
+        newTile.removeCharacter();
+        assertFalse(newTile.hasCharacter());
+    }
+
+
 }

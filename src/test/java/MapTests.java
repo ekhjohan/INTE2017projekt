@@ -32,7 +32,9 @@ public class MapTests {
         Map map = new Map(10, 5, 1);
         for(int x = 0; x < map.getWidth(); x++) {
             for(int y = 0; y < map.getHeight(); y++) {
-                if(x==0){ // Vänstra sidan
+                if(x==0 && y==map.calculateDoorY()){
+                    assertEquals(DoorTile.class, map.getTileOnCoordinate(x,y).getClass());
+                }else if(x==0){ // Vänstra sidan
                     assertEquals(NonWalkableTile.class, map.getTileOnCoordinate(x,y).getClass());
                 }else if(y==0){ //Norra sidan
                     assertEquals(NonWalkableTile.class, map.getTileOnCoordinate(x,y).getClass());
@@ -123,6 +125,21 @@ public class MapTests {
         Map map1 = new Map(10,6,3);
         Map map2 = new Map(10,5,3);
         assertFalse(map1.equals(map2));
+    }
+    @Test
+    public void calculateDoorY(){
+        Map map = new Map(10,5, 1);
+        int doorY = map.calculateDoorY();
+        assertEquals(5, doorY);
+    }
+
+    @Test
+    public void isBouncerOnMap(){
+        Map map = new Map(10,5,1);
+        FloorTile floorTile = (FloorTile) map.getTileOnCoordinate(1,(map.calculateDoorY()-1));
+        Bouncer bouncer = (Bouncer) floorTile.getCharacter();
+        assertEquals(Bouncer.class, bouncer.getClass());
+
     }
 
 }

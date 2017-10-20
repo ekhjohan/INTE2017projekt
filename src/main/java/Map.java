@@ -12,8 +12,8 @@ public class Map {
     private int height, width, maxAmountOfItems, totalAmountOfItems;
     private ArrayList<Item> itemsOnMap = new ArrayList<Item>();
     private HashMap<Coordinate,Tile> map;
-    private final int MINIMUM_HEIGHT = 3, MINIMUM_WIDTH = 3;
-    private final double PROCENTUAL_MULTIPLICATOR = 0.1;
+    private static final int MINIMUM_HEIGHT = 3, MINIMUM_WIDTH = 3;
+    private static final double PROCENTUAL_MULTIPLICATOR = 0.1;
 
 
     public Map(int height, int width, int totalAmountOfItems) {
@@ -49,7 +49,23 @@ public class Map {
                 }
             }
         }
+
+        addDoorToMap();
+        addBouncerToMap();
     }
+
+    private void addDoorToMap(){
+        addTile(0, calculateDoorY(), new DoorTile());
+    }
+    private void addBouncerToMap(){
+        FloorTile tile = (FloorTile) map.get(new Coordinate(1,(calculateDoorY()-1)));
+        tile.addCharacter(new Bouncer());
+    }
+
+    public int calculateDoorY(){
+        return Math.round(height/2);
+    }
+
     private void addTile(int x, int y, Tile tile){
         map.put(new Coordinate(x,y), tile);
     }
@@ -75,7 +91,7 @@ public class Map {
                 int randomCoordinate = random.nextInt(coordinates.length);
                 Coordinate coordinate = coordinates[randomCoordinate];
                 Tile tile = map.get(coordinate);
-                if (tile.getIsWalkable() && tile.getIsItemsAllowed() && !((FloorTile) tile).hasItem()) {
+                if (tile.getIsWalkable() && tile.getIsItemsAllowed() && !((FloorTile) tile).hasCharacter() && !((FloorTile) tile).hasItem()) {
                     ((FloorTile) tile).addItem(item);
                     itemsOnMap.add(item);
                     item = null;

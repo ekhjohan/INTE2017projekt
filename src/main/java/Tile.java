@@ -1,8 +1,7 @@
 
 public abstract class Tile {
 
-    private boolean isWalkable;
-    private boolean isItemsAllowed;
+    private boolean isWalkable, isItemsAllowed;
 
     public Tile(boolean isWalkable, boolean isItemsAllowed){
         this.isWalkable = isWalkable;
