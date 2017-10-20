@@ -77,8 +77,9 @@ public class PlayerTests {
     }
     @Test
     public void testGetDrunknessLevel(){
-        for(int i=0;i<44;i++)
+        for(int i=0;i<45;i++)
             player.addItem(new Shot());
+        player.addItem(new NonAlcoholicDrink());
 
         assertEquals(8 , player.getDrunkness());
     }
@@ -130,18 +131,26 @@ public class PlayerTests {
         player.addItem(new Wine());
         player.addItem(new Wine());
         int moveRight=0;
-//        int moveLeft=0;
-//        int moveUp=0;
-//        int moveDown=0;
-        for(int i=0; i<10000;i++){
+        for(int i=0; i<2500;i++){
             player.setCoordinate(0,0);
             player.calcMove(1);
             if(player.getCoordinate().getX()==1) moveRight++;
-//            else if(player.getCoordinate().getX()==-1) moveLeft++;
-//            else if(player.getCoordinate().getY()==-1) moveUp++;
-//            else if(player.getCoordinate().getY()==1) moveDown++;
         }
-//        System.out.println("Right moves out of 10000: "+moveRight+". \nOther directions:\nLeft:"+moveLeft+"\nUp:"+moveUp+"\nDown:"+moveDown);
+        for(int i=0; i<2500;i++){
+            player.setCoordinate(0,0);
+            player.calcMove(2);
+            if(player.getCoordinate().getX()==-1) moveRight++;
+        }
+        for(int i=0; i<2500;i++){
+            player.setCoordinate(0,0);
+            player.calcMove(3);
+            if(player.getCoordinate().getY()==1) moveRight++;
+        }
+        for(int i=0; i<2500;i++){
+            player.setCoordinate(0,0);
+            player.calcMove(4);
+            if(player.getCoordinate().getY()==-1) moveRight++;
+        }
         assertTrue(moveRight<8500&&moveRight>7500);
 
     }
