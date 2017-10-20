@@ -80,7 +80,7 @@ public class PlayerTests {
         for(int i=0;i<44;i++)
             player.addItem(new Shot());
 
-        assertEquals(7 , player.getDrunkness());
+        assertEquals(8 , player.getDrunkness());
     }
     @Test
     public void testTooManyWater(){
