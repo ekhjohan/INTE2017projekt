@@ -24,7 +24,7 @@ public class FileHandler {
             br.close();
         } catch (IOException ioe) {
             tokens = new String[]{"-1"};
-            return tokens;
+            //return tokens;
         }
         return tokens;
     }
