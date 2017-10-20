@@ -48,14 +48,6 @@ public class MapTests {
 
     }
 
-    @Test
-    public void addTileToMap() {
-        Map map = new Map(10,5, 1);
-        map.addTile(0, 1, new FloorTile());
-        Tile tile = map.getTileOnCoordinate(0,1);
-        assertTrue(tile.equals(new FloorTile()));
-    }
-
     @Test(expected = IllegalArgumentException.class)
     public void testMinimumMapSize() {
         int height = 2;
