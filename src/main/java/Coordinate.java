@@ -22,7 +22,9 @@ public class Coordinate implements Cloneable {
         Coordinate that = (Coordinate) o;
         return x == that.x && y == that.y;
     }
-    @Override public int hashCode() {
+
+    @Override
+    public int hashCode() {
         int result = x;
         result = 31 * result + y;
         return result;
@@ -35,10 +37,5 @@ public class Coordinate implements Cloneable {
         } catch (final CloneNotSupportedException ex) {
             throw new AssertionError(); // Finns inget test för denna Exception än...
         }
-    }
-
-    @Override
-    public String toString() {
-        return "Coordinate{" + "x=" + x + ", y=" + y +"}";
     }
 }

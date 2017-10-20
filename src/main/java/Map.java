@@ -37,9 +37,9 @@ public class Map {
                     map.put(new Coordinate(x,y),new NonWalkableTile());
                 }else if(y==0){ //Norra sidan
                     map.put(new Coordinate(x,y),new NonWalkableTile());
-                }else if(y == height){ //Högra sidan
+                }else if(y == height - 1){ //Högra sidan
                     map.put(new Coordinate(x,y),new NonWalkableTile());
-                }else if (x==width){ //Södra sidan
+                }else if (x==width -1 ){ //Södra sidan
                     map.put(new Coordinate(x,y),new NonWalkableTile());
                 }else{ //Gåbar yta
                     map.put(new Coordinate(x,y),new FloorTile());
@@ -59,9 +59,6 @@ public class Map {
     public Tile getTileOnCoordinate(int x, int y){
         return map.get(new Coordinate(x,y));
 
-    }
-    public HashMap<Coordinate, Tile> getMap() {
-        return map;
     }
 
     public void addRandomItemsToMap() {
@@ -113,15 +110,10 @@ public class Map {
 
 
 
-    public void addRandomVisitor(){
-
-    }
-
-
     public int getRandomOption(){
         Random random = new Random();
-        double[] probabilities = {0.2, 0.2, 0.2, 0.2, 0.2};
-        int[] results = {1, 2, 3, 4, 5};
+        double[] probabilities = {0.1, 0.2, 0.2, 0.2, 0.2, 0.1};
+        int[] results = {0, 1, 2, 3, 4, 5};
 
         double num = random.nextDouble();
         double s = 0;

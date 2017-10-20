@@ -35,9 +35,9 @@ public class MapTests {
                     assertEquals(NonWalkableTile.class, map.getTileOnCoordinate(x,y).getClass());
                 }else if(y==0){ //Norra sidan
                     assertEquals(NonWalkableTile.class, map.getTileOnCoordinate(x,y).getClass());
-                }else if(y == map.getHeight()){ //Högra sidan
+                }else if(y == map.getHeight() - 1){ //Högra sidan
                     assertEquals(NonWalkableTile.class, map.getTileOnCoordinate(x,y).getClass());
-                }else if (x==map.getWidth()){ //Södra sidan
+                }else if (x==map.getWidth() - 1){ //Södra sidan
                     assertEquals(NonWalkableTile.class, map.getTileOnCoordinate(x,y).getClass());
                 }else{ //Gåbar yta
                     assertEquals(FloorTile.class, map.getTileOnCoordinate(x,y).getClass());
@@ -72,15 +72,6 @@ public class MapTests {
     public void addItemsToMapTiles(){
         Map map = new Map(10,10, 100);
         map.addRandomItemsToMap();
-        /*for(Coordinate coordinate : map.getMap().keySet()){
-            Tile tile = map.getMap().get(coordinate);
-            if(tile.getIsItemsAllowed() && ((FloorTile) tile).hasItem()){
-                Item item = ((FloorTile) tile).getItem();
-
-                System.out.println("Tile: " + tile + ", Coord: " + coordinate + ", Item: " + item);
-            }
-        }*/
-
         assertEquals(10,map.getItemsOnMapList().size());
     }
 
@@ -98,14 +89,14 @@ public class MapTests {
     @Test
     public void getRandomOption(){
         Map map = new Map(10,10, 1);
-        int[] results = {1,2,3,4,5};
+        int[] results = {0,1,2,3,4,5};
         for(int i = 0; i<10000; i++) {
             int option = map.getRandomOption();
-            results[(option-1)] += 1;
+            results[(option)] += 1;
         }
         int roundedPercent = (((results[0] + 99) / 1000 ) * 1000)/100;
 
-            assertEquals(20, roundedPercent);
+            assertEquals(10, roundedPercent);
     }
 
     @Test
