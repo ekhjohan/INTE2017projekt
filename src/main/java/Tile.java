@@ -1,17 +1,17 @@
 
 public abstract class Tile {
 
-    boolean isWalkAble;
-    boolean isItemsAllowed;
+    private boolean isWalkable;
+    private boolean isItemsAllowed;
 
     public Tile(boolean isWalkable, boolean isItemsAllowed){
-        this.isWalkAble = isWalkable;
+        this.isWalkable = isWalkable;
         this.isItemsAllowed = isItemsAllowed;
     }
 
 
     public boolean getIsWalkable() {
-        return isWalkAble;
+        return isWalkable;
     }
     public boolean getIsItemsAllowed(){
         return isItemsAllowed;
@@ -25,6 +25,6 @@ public abstract class Tile {
 
         Tile tile = (Tile) o;
 
-        return isWalkAble == tile.isWalkAble;
+        return isWalkable == tile.isWalkable;
     }
 }

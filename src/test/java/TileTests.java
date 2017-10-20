@@ -23,7 +23,7 @@ public class TileTests {
     @Test
     public void testIsNonWalkAbleTileWalkAble(){
         NonWalkableTile newTile = new NonWalkableTile();
-        assertFalse(newTile.isWalkAble);
+        assertFalse(newTile.getIsWalkable());
     }
 
     @Test

@@ -12,9 +12,11 @@ public class Map {
     private int height, width, maxAmountOfItems, totalAmountOfItems;
     private ArrayList<Item> itemsOnMap = new ArrayList<Item>();
     private HashMap<Coordinate,Tile> map;
+    private final int MINIMUM_HEIGHT = 3, MINIMUM_WIDTH = 3;
+    private final double PROCENTUAL_MULTIPLICATOR = 0.1;
 
     public Map(int height, int width, int totalAmountOfItems) {
-        if (height < 4 || width < 4) {
+        if (height <= MINIMUM_HEIGHT || width <= MINIMUM_WIDTH) {
             throw new IllegalArgumentException("För liten karta");
         }
         this.height = height;
@@ -25,7 +27,7 @@ public class Map {
             throw new IllegalArgumentException("För lågt antal items");
         }
         this.totalAmountOfItems = totalAmountOfItems;
-        this.maxAmountOfItems = (int)((height * width) * 0.1);
+        this.maxAmountOfItems = (int)((height * width) * PROCENTUAL_MULTIPLICATOR);
         initMap();
     }
 
@@ -34,20 +36,20 @@ public class Map {
         for(int x = 0; x < width; x++) {
             for(int y = 0; y < height; y++) {
                 if(x==0){ // Vänstra sidan
-                    map.put(new Coordinate(x,y),new NonWalkableTile());
+                    addTile(x, y, new NonWalkableTile());
                 }else if(y==0){ //Norra sidan
-                    map.put(new Coordinate(x,y),new NonWalkableTile());
+                    addTile(x, y, new NonWalkableTile());
                 }else if(y == height - 1){ //Högra sidan
-                    map.put(new Coordinate(x,y),new NonWalkableTile());
+                    addTile(x, y, new NonWalkableTile());
                 }else if (x==width -1 ){ //Södra sidan
-                    map.put(new Coordinate(x,y),new NonWalkableTile());
+                    addTile(x, y, new NonWalkableTile());
                 }else{ //Gåbar yta
-                    map.put(new Coordinate(x,y),new FloorTile());
+                    addTile(x, y, new FloorTile());
                 }
             }
         }
     }
-    public void addTile(int x, int y, Tile tile){
+    private void addTile(int x, int y, Tile tile){
         map.put(new Coordinate(x,y), tile);
     }
     public int getHeight() {
@@ -130,10 +132,10 @@ public class Map {
 
 
     public int getMaxAmountOfItems(){
-        return this.maxAmountOfItems;
+        return maxAmountOfItems;
     }
     public ArrayList<Item> getItemsOnMapList(){
-        return this.itemsOnMap;
+        return itemsOnMap;
     }
 
     @Override
