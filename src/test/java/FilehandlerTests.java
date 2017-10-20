@@ -42,7 +42,7 @@ public class FilehandlerTests {
     public void methodTotalFilenameIsTooLong(){
         //+216 tecken, inkl. filändelse .txt.
         FileHandler fileHandler = new FileHandler();
-        boolean isValid = fileHandler.checkTotalFilenameLength("asadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdaasdasdsadasdasdasd");
+        boolean isValid = fileHandler.isTotalFilenameLengthValid("asadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdaasdasdsadasdasdasd");
         assertFalse(isValid);
     }
 
@@ -85,7 +85,7 @@ public class FilehandlerTests {
     public void emptyParameter(){
         String[] parameters = new String[]{"21", "", "1"};
         FileHandler fileHandler = new FileHandler();
-        boolean isValid = fileHandler.checkIfParametersEmpty(parameters);
+        boolean isValid = fileHandler.isParametersEmpty(parameters);
         assertFalse(isValid);
     }
 

@@ -1,32 +1,27 @@
 import items.Item;
 
-public class FloorTile extends Tile{
+public class FloorTile extends Tile {
 
     private Item item = null;
 
-
-    public FloorTile(){
+    public FloorTile() {
         super(true, true);
     }
 
-    public void addItem(Item newItem){
-        if(item == null){
-            this.item = newItem;
-        }
-
+    public void addItem(Item newItem) {
+        this.item = newItem;
     }
 
-    public void removeItem(){
+    public void removeItem() {
         this.item = null;
 
     }
 
-    public boolean hasItem(){
+    public boolean hasItem() {
         return (item != null);
-
     }
 
-    public Item getItem(){
+    public Item getItem() {
         return item;
     }
 

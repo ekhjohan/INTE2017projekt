@@ -2,19 +2,19 @@ import items.*;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Random;
 
 public class Player extends Character {
 
+    private static final double XP_TO_REACH_LVL_ONE = 5.0;
+    private static final double XP_MULTIPLICATOR_PER_LVL = 1.3;
     private String name;
     private static final int LIFE = 1;
     private List<Item> items;
 
-    public Player(String name){
+    public Player(String name) {
         super(10);
         this.name = name;
-
     }
 
     public String getName() {
@@ -25,74 +25,57 @@ public class Player extends Character {
         return LIFE;
     }
 
-    public List<Item> getItemList(){
+    public List<Item> getItemList() {
         return items;
     }
 
-    public void addItem(Item item){
-        if(items == null)
+    public void addItem(Item item) {
+        if (items == null)
             items = new LinkedList<Item>();
         items.add(item);
     }
 
-    public int getDrunkness(){
+    public int getDrunkness() {
         int drunkness = 0;
-        if(items == null)
+        if (items == null)
             return 0;
-        else{
+        else {
             drunkness=calculateDrunkness();
         }
-        drunkness=calculateDrunknessLevel(drunkness);
+        drunkness = calculateDrunknessLevel(drunkness);
         return drunkness;
     }
 
     public int calculateDrunkness() {
-        int drunkness=0;
-        ListIterator<Item> i = items.listIterator();
+        int drunkness = 0;
 
-        while (i.hasNext()) {
-            Item current = i.next();
-            Beer b;
-            Wine w;
-            Shot s;
-            Water wa;
-            NonAlcoholicDrink nad;
-            if (current.getClass().equals(items.Beer.class)) {
-                b = (Beer) current;
-                drunkness += b.getAlcoholContent();
-            } else if (current.getClass().equals(items.Wine.class)) {
-                w = (Wine) current;
-                drunkness += w.getAlcoholContent();
-            } else if (current.getClass().equals(items.Shot.class)) {
-                s = (Shot) current;
-                drunkness += s.getAlcoholContent();
-            } else if (current.getClass().equals(items.Water.class)) {
-                wa = (Water) current;
-                if (drunkness<=0){
-                    i.remove();
-                }else{
-                    drunkness += wa.getAlcoholContent();
+        for (Item item : items) {
+            if (item instanceof Beer) {
+                drunkness += ((Beer)item).getAlcoholContent();
+            } else if (item instanceof Wine) {
+                drunkness += ((Wine)item).getAlcoholContent();
+            } else if (item instanceof Shot) {
+                drunkness += ((Shot)item).getAlcoholContent();
+            } else if (item instanceof Water) {
+                if (drunkness > 0) {
+                    drunkness += ((Water)item).getAlcoholContent();
                 }
-            } else if (current.getClass().equals(items.NonAlcoholicDrink.class)) {
-                nad = (NonAlcoholicDrink) current;
-                if (drunkness<=0){
-                    i.remove();
-                }else{
-                    drunkness += nad.getAlcoholContent();
+            } else if (item instanceof NonAlcoholicDrink) {
+                if (drunkness > 0) {
+                    drunkness += ((NonAlcoholicDrink)item).getAlcoholContent();
                 }
             }
         }
         return drunkness;
     }
 
-    private int calculateDrunknessLevel(int drunkness){
-        double initialLevel=5.0;
-        double multiplicator=1.3;
-        double dr=drunkness;
-        int level=0;
-        while(dr>0.0){
-            double  i = (initialLevel*Math.pow(multiplicator,level));
-            dr+=-i;
+    private int calculateDrunknessLevel(int drunkness) {
+        double dr = drunkness;
+
+        int level = 0;
+        while (dr > 0.0) {
+            double i = (XP_TO_REACH_LVL_ONE * Math.pow(XP_MULTIPLICATOR_PER_LVL, level));
+            dr += -i;
             level++;
         }
         return level;
@@ -118,14 +101,16 @@ public class Player extends Character {
                     super.move('s');
                 else super.move('w');
                 break;
-            case 3:super.move(direction);
+            case 3:
+                super.move(direction);
+                break;
         }
     }
 
-    private int calcMisStep(double odds){
+    private int calcMisStep(double odds) {
         Random random = new Random();
-        double[] probabilities = {odds/3.0,odds/3.0,odds/3.0, 1.0-odds};
-        int[] results = {0,1,2,3};
+        double[] probabilities = {odds / 3.0, odds / 3.0, odds / 3.0, 1.0 - odds};
+        int[] results = {0, 1, 2, 3};
 
         double num = random.nextDouble();
         double s = 0;
