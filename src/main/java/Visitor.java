@@ -7,7 +7,16 @@ public class Visitor extends Character {
     public Visitor() {
         super(0);
         this.life = 1;
+        this.hotness=determineHotness();
+    }
 
+    private int determineHotness(){
+        Random r = new Random();
+        return r.nextInt(10)+1;
+    }
+
+    public int getHotness(){
+        return hotness;
     }
 
 }

@@ -17,4 +17,10 @@ public class VisitorTests {
         assertEquals(0, speed);
     }
 
+    @Test
+    public void getHotness(){
+        Visitor v = new Visitor();
+        System.out.println(v.getHotness());
+        assertNotNull(v.getHotness());
+    }
 }
