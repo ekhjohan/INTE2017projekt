@@ -86,7 +86,7 @@ public class PlayerTests {
     public void testTooManyWater(){
         player.addItem(new Beer());
         player.addItem(new Water());
-        player.addItem(new Water());
+        player.addItem(new NonAlcoholicDrink());
 
         player.getDrunkness();
         assertEquals(0, player.getDrunkness());
@@ -127,20 +127,21 @@ public class PlayerTests {
         player.addItem(new Shot());
         player.addItem(new Shot());
         player.addItem(new Shot());
-        player.addItem(new Shot());
+        player.addItem(new Wine());
+        player.addItem(new Wine());
         int moveRight=0;
-        int moveLeft=0;
-        int moveUp=0;
-        int moveDown=0;
+//        int moveLeft=0;
+//        int moveUp=0;
+//        int moveDown=0;
         for(int i=0; i<10000;i++){
             player.setCoordinate(0,0);
             player.calcMove(1);
             if(player.getCoordinate().getX()==1) moveRight++;
-            else if(player.getCoordinate().getX()==-1) moveLeft++;
-            else if(player.getCoordinate().getY()==-1) moveUp++;
-            else if(player.getCoordinate().getY()==1) moveDown++;
+//            else if(player.getCoordinate().getX()==-1) moveLeft++;
+//            else if(player.getCoordinate().getY()==-1) moveUp++;
+//            else if(player.getCoordinate().getY()==1) moveDown++;
         }
-        System.out.println("Right moves out of 1000000: "+moveRight+". \nOther directions:\nLeft:"+moveLeft+"\nUp:"+moveUp+"\nDown:"+moveDown);
+//        System.out.println("Right moves out of 10000: "+moveRight+". \nOther directions:\nLeft:"+moveLeft+"\nUp:"+moveUp+"\nDown:"+moveDown);
         assertTrue(moveRight<8500&&moveRight>7500);
 
     }

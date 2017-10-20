@@ -100,21 +100,19 @@ public class Player extends Character {
 //        System.out.println("Initial Drunkness: "+dr);
         int level=0;
         while(dr>0.0){
-
             double  i = (initialLevel*Math.pow(multiplicator,level));
             dr+=-i;
             level++;
 //            System.out.println("Drunkness: "+dr+", DrLevel: "+level+", Current Level Requirement: "+i);
-
-
         }
 //        System.out.println("drunknessLevel:"+level);
         return level;
     }
+
+
     public void calcMove(int direction){
         double oddsOfWrongStep = ((double)getDrunkness())*.05;
         int i=calcMisStep(oddsOfWrongStep);
-
         switch (i){
             case 0:
                 if(direction!=1)
@@ -134,7 +132,6 @@ public class Player extends Character {
             case 3:super.move(direction);
         }
     }
-
 
     private int calcMisStep(double odds){
         Random random = new Random();
