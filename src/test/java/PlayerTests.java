@@ -8,35 +8,35 @@ public class PlayerTests {
     private Player player;
 
     @Before
-    public void player() {
+    public void initPlayer() {
         player = new Player("Test");
     }
 
     @Test
-    public void createPlayer() {
+    public void testCreatePlayer() {
         assertNotNull(player);
     }
 
     @Test
-    public void playerHasName() {
+    public void testPlayerHasName() {
         String name = "Test";
         assertEquals(name, player.getName());
     }
 
     @Test
-    public void playerHasHealth() {
+    public void testPlayerHasHealth() {
         int life = player.getLife();
         assertEquals(1, life);
     }
 
     @Test
-    public void playerHasSpeed() {
+    public void testPlayerHasSpeed() {
         int speed = player.getSpeed();
         assertEquals(10, speed);
     }
 
     @Test
-    public void getPlayerCoordinate() {
+    public void testGetPlayerCoordinate() {
         player.setCoordinate(0,0);
         Coordinate coord = new Coordinate(0,0);
 
@@ -76,51 +76,9 @@ public class PlayerTests {
         assertEquals(0, player.getDrunkness());
     }
     @Test
-    public void getDrunknessLevel(){
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-        player.addItem(new Shot());
-
+    public void testGetDrunknessLevel(){
+        for(int i=0;i<44;i++)
+            player.addItem(new Shot());
 
         assertEquals(8 , player.getDrunkness());
     }
