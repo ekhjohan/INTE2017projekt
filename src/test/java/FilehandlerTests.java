@@ -31,12 +31,12 @@ public class FilehandlerTests {
     public void fileExists(){
         File file = new File("testfile.txt");
         assertTrue(file.exists());
-
     }
     @Test
     public void fileNotExist(){
-        File file = new File("fileNotExist.txt");
-        assertFalse(file.exists());
+        FileHandler fileHandler = new FileHandler();
+        String[] fileNotFound = fileHandler.readStringFromFile("fileNotExists.txt");
+        assertEquals("-1", fileNotFound[0]);
     }
     @Test
     public void methodTotalFilenameIsTooLong(){
@@ -45,8 +45,6 @@ public class FilehandlerTests {
         boolean isValid = fileHandler.checkTotalFilenameLength("asadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdaasdasdsadasdasdasd");
         assertFalse(isValid);
     }
-
-
 
     @Test(expected = IllegalArgumentException.class)
     public void totalFilenameIsTooLong(){
@@ -81,7 +79,5 @@ public class FilehandlerTests {
         FileHandler fileHandler = new FileHandler();
         String[] fileContent = fileHandler.readStringFromFile("fileWithIncorrectParameters.txt");
         Integer.parseInt(fileContent[0]);
-
     }
-
 }

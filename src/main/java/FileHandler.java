@@ -6,8 +6,9 @@ public class FileHandler {
 
 
 
-    public String[] readStringFromFile(String filename) {
+    public String[] readStringFromFile(String filename){
         String[] tokens = null;
+
         if(!checkFilenameLength(filename) || !checkTotalFilenameLength(filename)){
             throw new IllegalArgumentException("Felaktig längd på filnamn");
         }
@@ -22,7 +23,8 @@ public class FileHandler {
             tokens = line.split(",");
             br.close();
         } catch (IOException ioe) {
-
+            tokens = new String[]{"-1"};
+            return tokens;
         }
         return tokens;
     }
