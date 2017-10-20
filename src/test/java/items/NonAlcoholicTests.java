@@ -10,4 +10,5 @@ public class NonAlcoholicTests {
         Item i = new NonAlcoholicDrink();
         assertNotNull(i);
     }
+
 }
