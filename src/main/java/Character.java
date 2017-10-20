@@ -28,21 +28,22 @@ abstract public class Character {
             this.coordinate = new Coordinate(x, y);
     }
 
-    public void move(int direction){
+    public void move(char direction){
 
         switch (direction){
-            case 1:
-                this.coordinate = new Coordinate(this.coordinate.getX()+1, this.coordinate.getY());
-                break;
-            case 2:
-                this.coordinate = new Coordinate(this.coordinate.getX()-1, this.coordinate.getY());
-                break;
-            case 3:
-                this.coordinate = new Coordinate(this.coordinate.getX(), this.coordinate.getY()+1);
-                break;
-            case 4:
+            case 'w':
                 this.coordinate = new Coordinate(this.coordinate.getX(), this.coordinate.getY()-1);
                 break;
+            case 'a':
+                this.coordinate = new Coordinate(this.coordinate.getX()-1, this.coordinate.getY());
+                break;
+            case 's':
+                this.coordinate = new Coordinate(this.coordinate.getX(), this.coordinate.getY()+1);
+                break;
+            case 'd':
+                this.coordinate = new Coordinate(this.coordinate.getX()+1, this.coordinate.getY());
+                break;
+
             default:
                 break;
         }

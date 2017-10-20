@@ -8,13 +8,13 @@ import java.util.Random;
 public class Player extends Character {
 
     private String name;
-    private int life;
+    private static final int LIFE = 1;
     private List<Item> items;
 
     public Player(String name){
         super(10);
         this.name = name;
-        this.life = 1;
+
     }
 
     public String getName() {
@@ -22,7 +22,7 @@ public class Player extends Character {
     }
 
     public int getLife() {
-        return life;
+        return LIFE;
     }
 
     public List<Item> getItemList(){
@@ -89,37 +89,34 @@ public class Player extends Character {
         double initialLevel=5.0;
         double multiplicator=1.3;
         double dr=drunkness;
-//        System.out.println("Initial Drunkness: "+dr);
         int level=0;
         while(dr>0.0){
             double  i = (initialLevel*Math.pow(multiplicator,level));
             dr+=-i;
             level++;
-//            System.out.println("Drunkness: "+dr+", DrLevel: "+level+", Current Level Requirement: "+i);
         }
-//        System.out.println("drunknessLevel:"+level);
         return level;
     }
 
 
-    public void calcMove(int direction){
+    public void calcMove(char direction){
         double oddsOfWrongStep = ((double)getDrunkness())*.05;
         int i=calcMisStep(oddsOfWrongStep);
         switch (i){
             case 0:
-                if(direction!=1)
-                    super.move(1);
-                else super.move(4);
+                if(direction!= 'd')
+                    super.move('d');
+                else super.move('w');
                 break;
             case 1:
-                if(direction!=2)
-                    super.move(2);
-                else super.move(4);
+                if(direction!='a')
+                    super.move('a');
+                else super.move('w');
                 break;
             case 2:
-                if(direction!=3)
-                    super.move(3);
-                else super.move(4);
+                if(direction!='s')
+                    super.move('s');
+                else super.move('w');
                 break;
             case 3:super.move(direction);
         }

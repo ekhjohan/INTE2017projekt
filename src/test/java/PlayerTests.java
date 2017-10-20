@@ -96,7 +96,7 @@ public class PlayerTests {
     @Test
     public void testMove(){
         player.setCoordinate(0,0);
-        player.move(1);
+        player.move('d');
 
         assertEquals(new Coordinate(1,0), player.getCoordinate());
     }
@@ -104,11 +104,11 @@ public class PlayerTests {
     @Test
     public void testMoveLonger(){
         player.setCoordinate(0,0);
-        player.move(1);
-        player.move(3);
-        player.move(1);
-        player.move(4);
-        player.move(2);
+        player.move('d');
+        player.move('s');
+        player.move('d');
+        player.move('w');
+        player.move('a');
 
         assertTrue(player.getCoordinate().equals(new Coordinate(1,0)));
     }
@@ -133,22 +133,22 @@ public class PlayerTests {
         int moveRight=0;
         for(int i=0; i<2500;i++){
             player.setCoordinate(0,0);
-            player.calcMove(1);
+            player.calcMove('d');
             if(player.getCoordinate().getX()==1) moveRight++;
         }
         for(int i=0; i<2500;i++){
             player.setCoordinate(0,0);
-            player.calcMove(2);
+            player.calcMove('a');
             if(player.getCoordinate().getX()==-1) moveRight++;
         }
         for(int i=0; i<2500;i++){
             player.setCoordinate(0,0);
-            player.calcMove(3);
+            player.calcMove('s');
             if(player.getCoordinate().getY()==1) moveRight++;
         }
         for(int i=0; i<2500;i++){
             player.setCoordinate(0,0);
-            player.calcMove(4);
+            player.calcMove('w');
             if(player.getCoordinate().getY()==-1) moveRight++;
         }
         assertTrue(moveRight<8500&&moveRight>7500);
