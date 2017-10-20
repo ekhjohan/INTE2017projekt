@@ -29,16 +29,28 @@ public class FileHandler {
         return tokens;
     }
 
+
+    public int parseToInt(String str){
+        try{
+            int i = Integer.parseInt(str);
+            return i;
+
+        }catch(NumberFormatException e){
+            return -1;
+        }
+    }
+
+
     public Map createMapFromFile(String testfile){
 
         String[] mapInfo = readStringFromFile(testfile);
-        int x = Integer.parseInt(mapInfo[0]);
-        int y = Integer.parseInt(mapInfo[1]);
-        int numberOfItems = Integer.parseInt(mapInfo[2]);
-
         if(!checkIfParametersEmpty(mapInfo)){
             throw new IllegalArgumentException("Inkorrekta parametervärden");
         }
+            int x = parseToInt(mapInfo[0]);
+            int y = parseToInt(mapInfo[1]);
+            int numberOfItems = parseToInt(mapInfo[2]);
+
         Map map = new Map(x, y, numberOfItems);
         return map;
     }

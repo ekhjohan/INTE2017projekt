@@ -89,10 +89,18 @@ public class FilehandlerTests {
         assertFalse(isValid);
     }
 
-    @Test(expected = IllegalArgumentException .class)
+    @Test(expected = IllegalArgumentException.class)
     public void emptyParameterFileReader(){
         String filename = "emptyParameter.txt";
         FileHandler fileHandler = new FileHandler();
         fileHandler.createMapFromFile(filename);
     }
+    @Test
+    public void invalidNUmberFormat() {
+        FileHandler fileHandler = new FileHandler();
+        int result = fileHandler.parseToInt("a");
+        assertEquals(-1, result);
+    }
+
+
 }
