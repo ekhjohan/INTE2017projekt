@@ -9,6 +9,7 @@ import static org.junit.Assert.*;
 
 public class MapTests {
 
+
     @Test
     public void createMap() {
         Map map = new Map(10,5, 1);

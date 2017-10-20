@@ -57,33 +57,25 @@ public class Player extends Character {
             Shot s;
             Water wa;
             NonAlcoholicDrink nad;
-//                System.out.println(current.getClass());
             if (current.getClass().equals(items.Beer.class)) {
                 b = (Beer) current;
-//                    System.out.println("Beer");
                 drunkness += b.getAlcoholContent();
             } else if (current.getClass().equals(items.Wine.class)) {
                 w = (Wine) current;
-//                    System.out.println("Wine");
                 drunkness += w.getAlcoholContent();
             } else if (current.getClass().equals(items.Shot.class)) {
                 s = (Shot) current;
-//                    System.out.println("Shot");
                 drunkness += s.getAlcoholContent();
             } else if (current.getClass().equals(items.Water.class)) {
                 wa = (Water) current;
-//                    System.out.println("Water");
                 if (drunkness<=0){
-                    System.out.println("removing water drink, too much water");
                     i.remove();
                 }else{
                     drunkness += wa.getAlcoholContent();
                 }
             } else if (current.getClass().equals(items.NonAlcoholicDrink.class)) {
                 nad = (NonAlcoholicDrink) current;
-//                    System.out.println("nonalco");
                 if (drunkness<=0){
-                    System.out.println("removing nonalcoholic drink, too much water");
                     i.remove();
                 }else{
                     drunkness += nad.getAlcoholContent();

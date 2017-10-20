@@ -13,6 +13,7 @@ public class Map {
     private ArrayList<Item> itemsOnMap = new ArrayList<Item>();
     private HashMap<Coordinate,Tile> map;
 
+
     public Map(int height, int width, int totalAmountOfItems) {
         if (height < 4 || width < 4) {
             throw new IllegalArgumentException("För liten karta");
