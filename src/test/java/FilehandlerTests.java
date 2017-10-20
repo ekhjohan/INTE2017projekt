@@ -38,13 +38,33 @@ public class FilehandlerTests {
         File file = new File("fileNotExist.txt");
         assertFalse(file.exists());
     }
-    @Test(expected = IllegalArgumentException.class)
-    public void filenameIsTooLong(){
-        //+216 tecken
+    @Test
+    public void methodTotalFilenameIsTooLong(){
+        //+216 tecken, inkl. filändelse .txt.
         FileHandler fileHandler = new FileHandler();
-        fileHandler.readStringFromFile("asadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasd");
+        boolean isValid = fileHandler.checkTotalFilenameLength("asadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdaasdasdsadasdasdasd");
+        assertFalse(isValid);
+    }
+
+
+
+    @Test(expected = IllegalArgumentException.class)
+    public void totalFilenameIsTooLong(){
+        //+216 tecken, inkl. filändelse .txt.
+        FileHandler fileHandler = new FileHandler();
+        fileHandler.readStringFromFile("asadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdaasdasdsadasdasdasd");
 
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void filenameIsTooLong() {
+        //+216 tecken, inkl. filändelse .txt.
+        FileHandler fileHandler = new FileHandler();
+        fileHandler.readStringFromFile("asadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdaasdasdsadasdasdasd");
+
+    }
+
+
     @Test(expected = IllegalArgumentException.class)
     public void filenameTooShort(){
         //färre än 5 tecken, ink filndelse.

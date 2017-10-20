@@ -8,7 +8,7 @@ public class FileHandler {
 
     public String[] readStringFromFile(String filename) {
         String[] tokens = null;
-        if(checkFilenameLength(filename)){
+        if(!checkFilenameLength(filename) || !checkTotalFilenameLength(filename)){
             throw new IllegalArgumentException("Felaktig längd på filnamn");
         }
         try {
@@ -39,7 +39,14 @@ public class FileHandler {
     }
 
     public boolean checkFilenameLength(String filename){
-        return filename.length() < 5 || filename.length() > 216;
+        return filename.length() >= 5;
+    }
+
+
+    public boolean checkTotalFilenameLength(String filename){
+        String path = this.getClass().getClassLoader().getResource("").getPath();
+        int maxLength = 260 - path.length();
+        return filename.length() <= maxLength;
     }
 
 }
