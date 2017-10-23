@@ -1,6 +1,8 @@
 import org.junit.Test;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.junit.Assert.*;
 
@@ -10,11 +12,12 @@ public class FilehandlerTests {
     @Test
     public void readFromFile() {
         FileHandler fileHandler = new FileHandler();
-        String content = "100,50,10,";
+        String content = "1005010";
         String[] textLista = fileHandler.readStringFromFile("testfile.txt");
+
         String fileContent = "";
         for(String str : textLista){
-            fileContent += str + ",";
+            fileContent += str;
         }
         assertEquals(content, fileContent);
     }
@@ -72,7 +75,7 @@ public class FilehandlerTests {
     @Test(expected = NullPointerException.class)
     public void fileContentEmpty(){
         FileHandler fileHandler = new FileHandler();
-        String[] fileContent = fileHandler.readStringFromFile("emptyFile.txt");
+        fileHandler.readStringFromFile("emptyFile.txt");
     }
     @Test(expected = NumberFormatException .class)
     public void invalidParameterFormat(){

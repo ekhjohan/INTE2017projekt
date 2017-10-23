@@ -63,7 +63,7 @@ public class Map {
     }
 
     public int calculateDoorY(){
-        return Math.round(height/2);
+        return height/2;
     }
 
     private void addTile(int x, int y, Tile tile){

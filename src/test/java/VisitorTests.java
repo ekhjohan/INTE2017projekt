@@ -20,7 +20,12 @@ public class VisitorTests {
     @Test
     public void getHotness(){
         Visitor v = new Visitor();
-        System.out.println(v.getHotness());
         assertNotNull(v.getHotness());
     }
+    @Test
+    public void getLife(){
+        Visitor v = new Visitor();
+        assertEquals(1, v.getLife());
+    }
+
 }

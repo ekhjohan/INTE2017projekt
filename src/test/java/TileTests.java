@@ -66,7 +66,6 @@ public class TileTests {
         FloorTile newTile = new FloorTile();
         Item beerItem = new Beer();
         newTile.addItem(beerItem);
-        Item waterItem = new Water();
 
         assertEquals(beerItem, newTile.getItem());
     }

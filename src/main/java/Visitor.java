@@ -18,5 +18,8 @@ public class Visitor extends Character {
     public int getHotness(){
         return hotness;
     }
+    public int getLife(){
+        return life;
+    }
 
 }
