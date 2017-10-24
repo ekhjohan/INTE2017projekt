@@ -26,10 +26,4 @@ public abstract class Tile {
 
         return isWalkable == tile.isWalkable;
     }
-    @Override
-    public int hashCode() {
-        int result = (isWalkable ? 1 : 0);
-        result = 31 * result + (isItemsAllowed ? 1 : 0);
-        return result;
-    }
 }

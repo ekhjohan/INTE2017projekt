@@ -82,19 +82,12 @@ public class FilehandlerTests {
         FileHandler fileHandler = new FileHandler();
         fileHandler.readStringFromFile("emptyFile.txt");
     }
-    @Test(expected = NumberFormatException .class)
+    @Test
     public void invalidParameterFormat(){
         FileHandler fileHandler = new FileHandler();
         String[] fileContent = fileHandler.readStringFromFile("fileWithIncorrectParameters.txt");
-        Integer.parseInt(fileContent[0]);
-    }
-
-    @Test
-    public void emptyParameter(){
-        String[] parameters = new String[]{"21", "", "1"};
-        FileHandler fileHandler = new FileHandler();
-        boolean isValid = fileHandler.isParametersEmpty(parameters);
-        assertFalse(isValid);
+        int value = fileHandler.parseToInt(fileContent[0]);
+        assertEquals(-1, value);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -103,12 +96,5 @@ public class FilehandlerTests {
         FileHandler fileHandler = new FileHandler();
         fileHandler.createMapFromFile(filename);
     }
-    @Test
-    public void invalidNumberFormat() {
-        FileHandler fileHandler = new FileHandler();
-        int result = fileHandler.parseToInt("a");
-        assertEquals(-1, result);
-    }
-
 
 }
