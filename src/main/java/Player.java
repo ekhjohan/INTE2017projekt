@@ -8,12 +8,13 @@ public class Player extends Character {
 
     private static final double XP_TO_REACH_LVL_ONE = 5.0;
     private static final double XP_MULTIPLICATOR_PER_LVL = 1.3;
+    private static final int DEFAULT_SPEED = 10;
     private String name;
     private static final int LIFE = 1;
     private List<Item> items;
 
     public Player(String name) {
-        super(10);
+        super(DEFAULT_SPEED);
         this.name = name;
     }
 
@@ -40,29 +41,29 @@ public class Player extends Character {
         if (items == null)
             return 0;
         else {
-            drunkness=calculateDrunkness();
+            drunkness = calculateDrunkness();
         }
         drunkness = calculateDrunknessLevel(drunkness);
         return drunkness;
     }
 
-    public int calculateDrunkness() {
+    private int calculateDrunkness() {
         int drunkness = 0;
 
         for (Item item : items) {
             if (item instanceof Beer) {
-                drunkness += ((Beer)item).getAlcoholContent();
+                drunkness += ((Beer) item).getAlcoholContent();
             } else if (item instanceof Wine) {
-                drunkness += ((Wine)item).getAlcoholContent();
+                drunkness += ((Wine) item).getAlcoholContent();
             } else if (item instanceof Shot) {
-                drunkness += ((Shot)item).getAlcoholContent();
+                drunkness += ((Shot) item).getAlcoholContent();
             } else if (item instanceof Water) {
                 if (drunkness > 0) {
-                    drunkness += ((Water)item).getAlcoholContent();
+                    drunkness += ((Water) item).getAlcoholContent();
                 }
             } else if (item instanceof NonAlcoholicDrink) {
                 if (drunkness > 0) {
-                    drunkness += ((NonAlcoholicDrink)item).getAlcoholContent();
+                    drunkness += ((NonAlcoholicDrink) item).getAlcoholContent();
                 }
             }
         }
@@ -81,33 +82,34 @@ public class Player extends Character {
         return level;
     }
 
-
-    public void calcMove(char direction){
-        double oddsOfWrongStep = ((double)getDrunkness())*.05;
-        int i=calcMisStep(oddsOfWrongStep);
-        switch (i){
+    public void calculateMove(char direction) {
+        double oddsOfWrongStep = ((double) getDrunkness()) * .05;
+        int i = calculateMisstep(oddsOfWrongStep);
+        switch (i) {
             case 0:
-                if(direction!= 'd')
-                    super.move('d');
-                else super.move('w');
+                if (direction != 'd')
+                    super.moveCharacter('d');
+                else super.moveCharacter('w');
                 break;
             case 1:
-                if(direction!='a')
-                    super.move('a');
-                else super.move('w');
+                if (direction != 'a')
+                    super.moveCharacter('a');
+                else super.moveCharacter('w');
                 break;
             case 2:
-                if(direction!='s')
-                    super.move('s');
-                else super.move('w');
+                if (direction != 's')
+                    super.moveCharacter('s');
+                else super.moveCharacter('w');
                 break;
             case 3:
-                super.move(direction);
+                super.moveCharacter(direction);
+                break;
+            default:
                 break;
         }
     }
 
-    private int calcMisStep(double odds) {
+    private int calculateMisstep(double odds) {
         Random random = new Random();
         double[] probabilities = {odds / 3.0, odds / 3.0, odds / 3.0, 1.0 - odds};
         int[] results = {0, 1, 2, 3};

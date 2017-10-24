@@ -16,5 +16,4 @@ public class BouncerTests {
         int speed = bouncer.getSpeed();
         assertEquals(1, speed);
     }
-
 }

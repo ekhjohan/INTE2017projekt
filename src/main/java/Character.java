@@ -2,7 +2,7 @@ abstract public class Character {
     private int speed;
     private Coordinate coordinate;
 
-    public Character(int speed){
+    public Character(int speed) {
         this.speed = speed;
     }
 
@@ -14,41 +14,39 @@ abstract public class Character {
         return coordinate.clone();
     }
 
-    public void setCoordinate(int x, int y){
-        this.coordinate = new Coordinate(x,y);
+    public void setCoordinate(int x, int y) {
+        this.coordinate = new Coordinate(x, y);
     }
 
-    public void updateCoordinate(int x , int y) throws IndexOutOfBoundsException{
-            int xDiff = Math.abs(this.coordinate.getX() - x);
-            int yDiff = Math.abs(this.coordinate.getY() - y);
+    @Deprecated
+    public void updateCoordinate(int x, int y) throws IndexOutOfBoundsException {
+        int xDiff = Math.abs(this.coordinate.getX() - x);
+        int yDiff = Math.abs(this.coordinate.getY() - y);
 
-            if ((xDiff + yDiff) > 1)throw new IndexOutOfBoundsException("Too big update");
+        if ((xDiff + yDiff) > 1) throw new IndexOutOfBoundsException("Too big update");
 
-
-            this.coordinate = new Coordinate(x, y);
+        this.coordinate = new Coordinate(x, y);
     }
 
-    public void move(char direction){
+    public void moveCharacter(char direction) {
 
-        switch (direction){
+        switch (direction) {
             case 'w':
-                this.coordinate = new Coordinate(this.coordinate.getX(), this.coordinate.getY()-1);
+                this.coordinate = new Coordinate(this.coordinate.getX(), this.coordinate.getY() - 1);
                 break;
             case 'a':
-                this.coordinate = new Coordinate(this.coordinate.getX()-1, this.coordinate.getY());
+                this.coordinate = new Coordinate(this.coordinate.getX() - 1, this.coordinate.getY());
                 break;
             case 's':
-                this.coordinate = new Coordinate(this.coordinate.getX(), this.coordinate.getY()+1);
+                this.coordinate = new Coordinate(this.coordinate.getX(), this.coordinate.getY() + 1);
                 break;
             case 'd':
-                this.coordinate = new Coordinate(this.coordinate.getX()+1, this.coordinate.getY());
+                this.coordinate = new Coordinate(this.coordinate.getX() + 1, this.coordinate.getY());
                 break;
-
             default:
                 break;
         }
     }
-
 }
 
 

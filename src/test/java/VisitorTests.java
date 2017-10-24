@@ -27,5 +27,4 @@ public class VisitorTests {
         Visitor v = new Visitor();
         assertEquals(1, v.getLife());
     }
-
 }

@@ -16,7 +16,7 @@
     <node x="2554.5" y="723.5">DoorTile</node>
     <node x="2536.0" y="278.5">Tile</node>
     <node x="585.5" y="723.5">items.NonAlcoholicDrink</node>
-    <node x="1618.8156150550797" y="1049.952264381885">FileHandler</node>
+    <node x="1606.8511107711138" y="1061.9167686658507">FileHandler</node>
     <node x="1908.7035" y="0.0">Coordinate</node>
     <node x="10.5" y="723.5">items.Wine</node>
     <node x="424.5" y="723.5">items.GlassShiver</node>

@@ -1,9 +1,5 @@
 import org.junit.Test;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import static org.junit.Assert.*;
 
 
@@ -16,24 +12,26 @@ public class FilehandlerTests {
         String[] textLista = fileHandler.readStringFromFile("testfile.txt");
 
         String fileContent = "";
-        for(String str : textLista){
+        for (String str : textLista) {
             fileContent += str;
         }
         assertEquals(content, fileContent);
     }
 
     @Test
-    public void createMapFromFile(){
+    public void createMapFromFile() {
         FileHandler fileHandler = new FileHandler();
         Map newMap = fileHandler.createMapFromFile("testfile.txt");
-        Map tempMap = new Map(100,50,10);
+        Map tempMap = new Map(100, 50, 10);
         assertEquals(newMap, tempMap);
     }
+
     @Test(expected = IllegalArgumentException.class)
-    public void createMapFromFileHeightAndWithTooLow(){
+    public void createMapFromFileHeightAndWithTooLow() {
         FileHandler fileHandler = new FileHandler();
         Map newMap = fileHandler.createMapFromFile("widthAndHeightTooLow.txt");
     }
+
     @Test(expected = IllegalArgumentException.class)
     public void createMapFromFileTotalItemsOnMapTooLow() {
         FileHandler fileHandler = new FileHandler();
@@ -41,25 +39,25 @@ public class FilehandlerTests {
     }
 
     @Test
-    public void fileNotExist(){
+    public void fileNotExist() {
         FileHandler fileHandler = new FileHandler();
         String[] fileNotFound = fileHandler.readStringFromFile("fileNotExists.txt");
         assertEquals("-1", fileNotFound[0]);
     }
+
     @Test
-    public void methodTotalFilenameIsTooLong(){
+    public void methodTotalFilenameIsTooLong() {
         //+216 tecken, inkl. filändelse .txt.
         FileHandler fileHandler = new FileHandler();
-        boolean isValid = fileHandler.isTotalFilenameLengthValid("asadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdaasdasdsadasdasdasd");
+        boolean isValid = fileHandler.isTotalFilepathLengthValid("asadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdaasdasdsadasdasdasd");
         assertFalse(isValid);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void totalFilenameIsTooLong(){
+    public void totalFilenameIsTooLong() {
         //+216 tecken, inkl. filändelse .txt.
         FileHandler fileHandler = new FileHandler();
         fileHandler.readStringFromFile("asadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdaasdasdsadasdasdasd");
-
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -67,23 +65,23 @@ public class FilehandlerTests {
         //+216 tecken, inkl. filändelse .txt.
         FileHandler fileHandler = new FileHandler();
         fileHandler.readStringFromFile("asadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdasadasdasdasdaasdasdsadasdasdasd");
-
     }
 
-
     @Test(expected = IllegalArgumentException.class)
-    public void filenameTooShort(){
-        //färre än 5 tecken, ink filndelse.
+    public void filenameTooShort() {
+        //färre än 5 tecken, inkl filändelse .txt.
         FileHandler fileHandler = new FileHandler();
         fileHandler.readStringFromFile("a");
     }
+
     @Test(expected = NullPointerException.class)
-    public void fileContentEmpty(){
+    public void fileContentEmpty() {
         FileHandler fileHandler = new FileHandler();
         fileHandler.readStringFromFile("emptyFile.txt");
     }
+
     @Test
-    public void invalidParameterFormat(){
+    public void invalidParameterFormat() {
         FileHandler fileHandler = new FileHandler();
         String[] fileContent = fileHandler.readStringFromFile("fileWithIncorrectParameters.txt");
         int value = fileHandler.parseToInt(fileContent[0]);
@@ -91,10 +89,9 @@ public class FilehandlerTests {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void emptyParameterFileReader(){
+    public void emptyParameterFileReader() {
         String filename = "emptyParameter.txt";
         FileHandler fileHandler = new FileHandler();
         fileHandler.createMapFromFile(filename);
     }
-
 }

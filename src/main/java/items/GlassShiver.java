@@ -1,6 +1,6 @@
 package items;
 
-public class GlassShiver extends Item{
+public class GlassShiver extends Item {
     private final int damage = 1;
 
 

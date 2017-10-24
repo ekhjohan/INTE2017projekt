@@ -1,10 +1,6 @@
-public class DoorTile extends Tile{
+public class DoorTile extends Tile {
 
-    public DoorTile(){
+    public DoorTile() {
         super(true, false);
     }
-
-
-
-
 }

@@ -3,19 +3,18 @@ public abstract class Tile {
 
     private boolean isWalkable, isItemsAllowed;
 
-    public Tile(boolean isWalkable, boolean isItemsAllowed){
+    public Tile(boolean isWalkable, boolean isItemsAllowed) {
         this.isWalkable = isWalkable;
         this.isItemsAllowed = isItemsAllowed;
     }
 
-
     public boolean getIsWalkable() {
         return isWalkable;
     }
-    public boolean getIsItemsAllowed(){
+
+    public boolean getIsItemsAllowed() {
         return isItemsAllowed;
     }
-
 
     @Override
     public boolean equals(Object o) {

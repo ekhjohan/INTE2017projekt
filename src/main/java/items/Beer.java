@@ -6,7 +6,7 @@ public class Beer extends Item {
     public int getAlcoholContent() {
         return alcoholContent;
     }
-    
+
     @Override
     public int hashCode() {
         return alcoholContent;

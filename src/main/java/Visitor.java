@@ -7,19 +7,19 @@ public class Visitor extends Character {
     public Visitor() {
         super(0);
         this.life = 1;
-        this.hotness=determineHotness();
+        this.hotness = determineHotness();
     }
 
-    private int determineHotness(){
+    private int determineHotness() {
         Random r = new Random();
-        return r.nextInt(10)+1;
+        return r.nextInt(10) + 1;
     }
 
-    public int getHotness(){
+    public int getHotness() {
         return hotness;
     }
-    public int getLife(){
+
+    public int getLife() {
         return life;
     }
-
 }
