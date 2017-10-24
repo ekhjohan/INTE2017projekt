@@ -29,12 +29,17 @@ public class FilehandlerTests {
         Map tempMap = new Map(100,50,10);
         assertEquals(newMap, tempMap);
     }
-
-    @Test
-    public void fileExists(){
-        File file = new File("testfile.txt");
-        assertTrue(file.exists());
+    @Test(expected = IllegalArgumentException.class)
+    public void createMapFromFileHeightAndWithTooLow(){
+        FileHandler fileHandler = new FileHandler();
+        Map newMap = fileHandler.createMapFromFile("widthAndHeightTooLow.txt");
     }
+    @Test(expected = IllegalArgumentException.class)
+    public void createMapFromFileTotalItemsOnMapTooLow() {
+        FileHandler fileHandler = new FileHandler();
+        Map newMap = fileHandler.createMapFromFile("totalNumberOfItemsTooLow.txt");
+    }
+
     @Test
     public void fileNotExist(){
         FileHandler fileHandler = new FileHandler();
@@ -99,7 +104,7 @@ public class FilehandlerTests {
         fileHandler.createMapFromFile(filename);
     }
     @Test
-    public void invalidNUmberFormat() {
+    public void invalidNumberFormat() {
         FileHandler fileHandler = new FileHandler();
         int result = fileHandler.parseToInt("a");
         assertEquals(-1, result);
