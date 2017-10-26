@@ -3,7 +3,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 
-public class FilehandlerTests {
+public class FileHandlerTests {
 
     @Test
     public void createMapFromFile() {
