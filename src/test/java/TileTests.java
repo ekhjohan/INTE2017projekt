@@ -153,6 +153,13 @@ public class TileTests {
 
         assertEquals(tile1.hashCode(), tile2.hashCode());
     }
+    @Test
+    public void testNonWalkableTileHashCode() {
+        NonWalkableTile tile1 = new NonWalkableTile();
+        NonWalkableTile tile2 = new NonWalkableTile();
+
+        assertEquals(tile1.hashCode(), tile2.hashCode());
+    }
 
 
     @Test

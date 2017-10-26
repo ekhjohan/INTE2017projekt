@@ -36,18 +36,18 @@ public class Player extends Character {
         items.add(item);
     }
 
-    public int getDrunkness() {
+    public int getDrunknessLevel() {
         int drunkness = 0;
         if (items == null)
             return 0;
         else {
-            drunkness = calculateDrunkness();
+            drunkness = getDrunknessPoints();
         }
         drunkness = calculateDrunknessLevel(drunkness);
         return drunkness;
     }
 
-    private int calculateDrunkness() {
+    public int getDrunknessPoints() {
         int drunkness = 0;
 
         for (Item item : items) {
@@ -71,19 +71,21 @@ public class Player extends Character {
     }
 
     private int calculateDrunknessLevel(int drunkness) {
-        double dr = drunkness;
-
+        double totalDrunknessPoints = drunkness;
         int level = 0;
-        while (dr > 0.0) {
-            double i = (XP_TO_REACH_LVL_ONE * Math.pow(XP_MULTIPLICATOR_PER_LVL, level));
-            dr += -i;
-            level++;
+
+        while (totalDrunknessPoints > 0.0) {
+            double pointsToReachNextLevel = (XP_TO_REACH_LVL_ONE * Math.pow(XP_MULTIPLICATOR_PER_LVL, level));
+            if(totalDrunknessPoints >= Math.ceil(pointsToReachNextLevel)){
+                level++;
+            }
+            totalDrunknessPoints -= pointsToReachNextLevel;
         }
         return level;
     }
 
-    public void calculateMove(char direction) {
-        double oddsOfWrongStep = ((double) getDrunkness()) * .05;
+    public void movePlayer(char direction) {
+        double oddsOfWrongStep = ((double) getDrunknessLevel()) * .05;
         int i = calculateMisstep(oddsOfWrongStep);
         switch (i) {
             case 0:

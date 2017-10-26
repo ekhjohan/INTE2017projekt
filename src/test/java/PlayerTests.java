@@ -58,7 +58,7 @@ public class PlayerTests {
 
     @Test
     public void testGetDrunknessNoItems() {
-        int drunk = player.getDrunkness();
+        int drunk = player.getDrunknessLevel();
         assertEquals(0, drunk);
 
     }
@@ -67,14 +67,14 @@ public class PlayerTests {
     public void testGetDrunkessOneItem() {
         player.addItem(new Shot());
 
-        assertEquals(1, player.getDrunkness());
+        assertEquals(0, player.getDrunknessLevel());
     }
 
     @Test
     public void testNegativeDrunkness() {
         player.addItem(new Water());
 
-        assertEquals(0, player.getDrunkness());
+        assertEquals(0, player.getDrunknessLevel());
     }
 
     @Test
@@ -82,8 +82,45 @@ public class PlayerTests {
         for (int i = 0; i < 45; i++)
             player.addItem(new Shot());
         player.addItem(new NonAlcoholicDrink());
+        assertEquals(6, player.getDrunknessLevel());
+    }
 
-        assertEquals(8, player.getDrunkness());
+    @Test
+    public void testStateTransitions() {
+        player.setCoordinate(0, 0);
+        assertEquals(0, player.getDrunknessLevel());
+        doX(1, new Beer(), 'w');
+        assertEquals(0, player.getDrunknessLevel());
+        doX(2, new Shot(), 'w');
+        assertEquals(1, player.getDrunknessLevel());
+        doX(1, new Beer(), 'w');
+        assertEquals(6, player.getDrunknessPoints());
+        doX(1, new Water(), 'w');
+        assertEquals(5, player.getDrunknessPoints());
+        doX(1, new Water(), 'w');
+        assertEquals(0, player.getDrunknessLevel());
+        doX(1, new Beer(), 'w');
+        assertEquals(1, player.getDrunknessLevel());
+        doX(7, new Beer(), 'w');
+        assertEquals(12, player.getDrunknessPoints());
+        doX(1, new Beer(), 'w');
+        assertEquals(2, player.getDrunknessLevel());
+        doX(1, new Beer(), 'w');
+        assertEquals(14, player.getDrunknessPoints());
+        doX(1, new Water(), 'w');
+        assertEquals(13, player.getDrunknessPoints());
+        doX(1, new Water(), 'w');
+        assertEquals(12, player.getDrunknessPoints());
+        doX(1, new Water(), 'w');
+        assertEquals(11, player.getDrunknessPoints());
+        assertEquals(1, player.getDrunknessLevel());
+    }
+
+    private void doX(int times, Item item, char direction) {
+        for (int i = 0; i < times; i++) {
+            player.addItem(item);
+            player.movePlayer(direction);
+        }
     }
 
     @Test
@@ -92,8 +129,8 @@ public class PlayerTests {
         player.addItem(new Water());
         player.addItem(new NonAlcoholicDrink());
 
-        player.getDrunkness();
-        assertEquals(0, player.getDrunkness());
+        player.getDrunknessLevel();
+        assertEquals(0, player.getDrunknessLevel());
     }
 
     @Test
@@ -136,24 +173,24 @@ public class PlayerTests {
         int moveRight = 0;
         for (int i = 0; i < 2500; i++) {
             player.setCoordinate(0, 0);
-            player.calculateMove('d');
+            player.movePlayer('d');
             if (player.getCoordinate().getX() == 1) moveRight++;
         }
         for (int i = 0; i < 2500; i++) {
             player.setCoordinate(0, 0);
-            player.calculateMove('a');
+            player.movePlayer('a');
             if (player.getCoordinate().getX() == -1) moveRight++;
         }
         for (int i = 0; i < 2500; i++) {
             player.setCoordinate(0, 0);
-            player.calculateMove('s');
+            player.movePlayer('s');
             if (player.getCoordinate().getY() == 1) moveRight++;
         }
         for (int i = 0; i < 2500; i++) {
             player.setCoordinate(0, 0);
-            player.calculateMove('w');
+            player.movePlayer('w');
             if (player.getCoordinate().getY() == -1) moveRight++;
         }
-        assertTrue(moveRight < 8500 && moveRight > 7500);
+        assertTrue(moveRight < 9000 && moveRight > 8000);
     }
 }
